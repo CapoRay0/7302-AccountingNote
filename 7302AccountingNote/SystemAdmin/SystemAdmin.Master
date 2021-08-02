@@ -21,9 +21,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="UserInfo.aspx">個人資訊</a><br /><br />
-                        <a href="AccountingList.aspx">流水帳管理</a><br /><br />
-                        <a href="UserList.aspx">會員管理</a>
+                        <a href="/SystemAdmin/UserInfo/UserInfo.aspx">個人資訊</a><br /><br />
+                        <a href="/SystemAdmin/AccountingRecord/AccountingList.aspx">流水帳管理</a><br /><br />
+                        <a href="/SystemAdmin/AccountManagement/UserList.aspx">會員管理</a>
                     </td>
                     <td>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
