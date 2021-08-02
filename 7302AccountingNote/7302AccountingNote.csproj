@@ -67,17 +67,89 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="SystemAdmin\AccountingRecord\AccountingDetail.aspx" />
+    <Content Include="SystemAdmin\AccountingRecord\AccountingList.aspx" />
+    <Content Include="SystemAdmin\AccountManagement\UserDetail.aspx" />
+    <Content Include="SystemAdmin\AccountManagement\UserList.aspx" />
+    <Content Include="SystemAdmin\AccountManagement\UserPassword.aspx" />
+    <Content Include="SystemAdmin\UserInfo\UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemAdmin\AccountingRecord\AccountingDetail.aspx.cs">
+      <DependentUpon>AccountingDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountingRecord\AccountingDetail.aspx.designer.cs">
+      <DependentUpon>AccountingDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountingRecord\AccountingList.aspx.cs">
+      <DependentUpon>AccountingList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountingRecord\AccountingList.aspx.designer.cs">
+      <DependentUpon>AccountingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserDetail.aspx.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserDetail.aspx.designer.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserPassword.aspx.cs">
+      <DependentUpon>UserPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserPassword.aspx.designer.cs">
+      <DependentUpon>UserPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\SystemAdmin.Master.cs">
+      <DependentUpon>SystemAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\SystemAdmin.Master.designer.cs">
+      <DependentUpon>SystemAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\UserInfo\UserInfo.aspx.cs">
+      <DependentUpon>UserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\UserInfo\UserInfo.aspx.designer.cs">
+      <DependentUpon>UserInfo.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="SystemAdmin\SystemAdmin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -88,6 +160,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccountingNote.Auth\AccountingNote.Auth.csproj">
+      <Project>{1BE9D066-7334-4561-A73B-C81EDD347C9F}</Project>
+      <Name>AccountingNote.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccountingNote.DBSource\AccountingNote.DBSource.csproj">
+      <Project>{bcd278e3-57d4-44f1-8748-d9ab2a28708c}</Project>
+      <Name>AccountingNote.DBSource</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
