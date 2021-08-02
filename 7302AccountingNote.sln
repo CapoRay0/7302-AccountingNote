@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7302AccountingNote", "7302AccountingNote.csproj", "{F314A3F2-2123-4E78-A0E6-ED4639FFA257}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7302AccountingNote", "7302AccountingNote\7302AccountingNote.csproj", "{F314A3F2-2123-4E78-A0E6-ED4639FFA257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingNote.Auth", "..\AccountingNote.Auth\AccountingNote.Auth.csproj", "{1BE9D066-7334-4561-A73B-C81EDD347C9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingNote.Auth", "AccountingNote.Auth\AccountingNote.Auth.csproj", "{1BE9D066-7334-4561-A73B-C81EDD347C9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingNote.DBSource", "..\AccountingNote.DBSource\AccountingNote.DBSource.csproj", "{BCD278E3-57D4-44F1-8748-D9AB2A28708C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingNote.DBSource", "AccountingNote.DBSource\AccountingNote.DBSource.csproj", "{BCD278E3-57D4-44F1-8748-D9AB2A28708C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
