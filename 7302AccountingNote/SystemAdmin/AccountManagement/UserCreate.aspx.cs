@@ -7,20 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace _7302AccountingNote.SystemAdmin.AccountManagement
 {
-    public partial class UserDetail : System.Web.UI.Page
+    public partial class UserCreate : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
 
         }
     }

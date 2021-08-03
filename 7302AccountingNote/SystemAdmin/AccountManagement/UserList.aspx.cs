@@ -43,7 +43,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 
         protected void btnCreate_Click(object sender, EventArgs e)  
         {
-            //導向到UserDetail
+            Response.Redirect("/SystemAdmin/AccountManagement/UserCreate.aspx");
         }
 
 

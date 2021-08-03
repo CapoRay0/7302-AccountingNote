@@ -72,6 +72,7 @@
     <Content Include="Login.aspx" />
     <Content Include="SystemAdmin\AccountingRecord\AccountingDetail.aspx" />
     <Content Include="SystemAdmin\AccountingRecord\AccountingList.aspx" />
+    <Content Include="SystemAdmin\AccountManagement\UserCreate.aspx" />
     <Content Include="SystemAdmin\AccountManagement\UserDetail.aspx" />
     <Content Include="SystemAdmin\AccountManagement\UserList.aspx" />
     <Content Include="SystemAdmin\AccountManagement\UserPassword.aspx" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="SystemAdmin\AccountingRecord\AccountingList.aspx.designer.cs">
       <DependentUpon>AccountingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserCreate.aspx.cs">
+      <DependentUpon>UserCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAdmin\AccountManagement\UserCreate.aspx.designer.cs">
+      <DependentUpon>UserCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemAdmin\AccountManagement\UserDetail.aspx.cs">
       <DependentUpon>UserDetail.aspx</DependentUpon>

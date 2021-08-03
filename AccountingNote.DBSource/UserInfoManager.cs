@@ -39,14 +39,14 @@ namespace AccountingNote.DBSource
         {
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
-                @"SELECT 
-                    [Account]
-                    ,[Name]
+                @"SELECT
+                      [ID] 
+                    , [Account]
+                    , [Name]
                     , [Email]
                     , [UserLevel]
                     , [CreateDate]
                     FROM UserInfo
-                    
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
