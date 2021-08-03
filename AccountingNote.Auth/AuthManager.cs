@@ -44,6 +44,12 @@ namespace AccountingNote.Auth
             model.Account = dr["Account"].ToString();
             model.Name = dr["Name"].ToString();
             model.Email = dr["Email"].ToString();
+            model.UserLevel = dr["UserLevel"].ToString();
+            //DateTime? CreatDateTemp = dr["CreateDate"] as DateTime?;
+            if(dr["CreateDate"] != null)
+            {
+                model.CreateDate = Convert.ToDateTime(dr["CreateDate"]);
+            }
 
             return model;
         }

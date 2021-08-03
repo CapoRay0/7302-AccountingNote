@@ -34,5 +34,34 @@ namespace AccountingNote.DBSource
                 return null;
             }
         }
+
+        public static DataTable GetUserInfoForUserList() //帶參數進來
+        {
+            string connectionString = DBHelper.GetConnectionString();
+            string dbCommandString =
+                @"SELECT 
+                    [Account]
+                    ,[Name]
+                    , [Email]
+                    , [UserLevel]
+                    , [CreateDate]
+                    FROM UserInfo
+                    
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            //list.Add(new SqlParameter("@account", account));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connectionString, dbCommandString, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                //Console.WriteLine(ex.ToString());
+                return null;
+            }
+        }
     }
 }

@@ -8,10 +8,13 @@ namespace AccountingNote.Auth
 {
     public class UserInfoModel
     {
-        //public DateTime CreateDate { get; set; }
+
         public string ID { get; set; }
         public string Account { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string UserLevel { get; set; }
+        public DateTime CreateDate { get; set; }
+
     }
 }

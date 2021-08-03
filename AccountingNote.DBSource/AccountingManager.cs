@@ -23,9 +23,9 @@ namespace AccountingNote.DBSource
                         CreateDate,
                         ActType,
                         Amount,
-                        Caption      
+                        Caption
                     FROM AccountingNote
-                    WHERE UserID = @userID  
+                    WHERE UserID = @userID
                 ";
 
             // 用List把Parameter裝起來，再裝到共用參數
@@ -58,7 +58,7 @@ namespace AccountingNote.DBSource
                         ActType,
                         CreateDate,
                         Body
-                    FROM Accounting
+                    FROM [7302AccountingNote].[dbo].[AccountingNote]
                     WHERE id = @id AND UserID = @userID
                 "; // userID = 防止偷看其他使用者的資料
 
@@ -96,7 +96,7 @@ namespace AccountingNote.DBSource
 
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" INSERT INTO [dbo].[Accounting]
+                $@" INSERT INTO [AccountingNote]
                     (
                         UserID
                        ,Caption
@@ -153,7 +153,7 @@ namespace AccountingNote.DBSource
 
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" UPDATE [Accounting]
+                $@" UPDATE [AccountingNote]
                     SET
                        UserID      = @userID
                        ,Caption    = @caption
@@ -197,7 +197,7 @@ namespace AccountingNote.DBSource
         {
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
-                @" DELETE [Accounting]
+                @" DELETE [AccountingNote]
                     WHERE ID = @id ";
 
             List<SqlParameter> paramList = new List<SqlParameter>();

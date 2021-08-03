@@ -37,8 +37,12 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 
             //-------小計--------
             int answer=0;
+            
             for (int i = 0; i < dt.Rows.Count; i++) {
-                answer += (int)dt.Rows[i][3];
+                if ((int)dt.Rows[i][2] == 0)
+                { answer -= (int)dt.Rows[i][3]; }
+                else if ((int)dt.Rows[i][2] == 1)
+                { answer += (int)dt.Rows[i][3]; }
             }
                 
             TotalAccount.Text = $"小計 {answer:C0} 元";  //驗證
@@ -47,8 +51,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 
             if (dt.Rows.Count > 0) // 如果DB有資料
             {
-                
-
                 this.gvAccountingList.DataSource = dt; // 資料繫結
                 this.gvAccountingList.DataBind();
 
@@ -99,14 +101,14 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 {
                     case 0:
                         lbl.Text = "支出";
-                        if (dr.Row.Field<int>("Amount") > 1500)
+                        if (dr.Row.Field<int>("Amount") > 0)
                         {
                             lbl.ForeColor = Color.Red;
                         }
                         break;
                     case 1:
                         lbl.Text = "收入";
-                        if (dr.Row.Field<int>("Amount") > 1500)
+                        if (dr.Row.Field<int>("Amount") > 0)
                         {
                             lbl.ForeColor = Color.Blue;
                         }

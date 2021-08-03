@@ -5,24 +5,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table>
         <tr>
-            <td>
+            <td colspan="2">
                 <h3>流水帳管理</h3>
             </td>
         </tr>
         <tr>
-
             <td>
-                    <tr>
-                        <td>
-                        <asp:Button ID="btnCreate" runat="server" Text="Add" OnClick="btnCreate_Click" />                  
-                        <asp:Label ID="Label1" runat="server" Text="用來  調距離的" Visible="false"></asp:Label>
-                            
-                            <asp:TextBox ID="TotalAccount" runat="server" ReadOnly="true" Width="190px" ></asp:TextBox>
-                            
-                        </td>
-                    </tr>
-                        
-                        
+                <asp:Button ID="btnCreate" runat="server" Text="Add" OnClick="btnCreate_Click" />
+                <asp:Label ID="Label1" runat="server" Text="用來  調距離的" Visible="false"></asp:Label>
+                <asp:TextBox ID="TotalAccount" runat="server" ReadOnly="true" Width="190px"></asp:TextBox>
+
                 <asp:GridView ID="gvAccountingList" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvAccountingList_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
@@ -41,9 +33,9 @@
                         <asp:BoundField HeaderText="金額" DataField="Amount" />
 
                         <asp:BoundField HeaderText="標題" DataField="Caption" />
-                        <asp:TemplateField HeaderText="Act">
+                        <asp:TemplateField HeaderText="編輯">
                             <ItemTemplate>
-                                <a href="/SystemAdmin/AccountingDetail.aspx?ID=<%# Eval("ID") %>">Edit</a>
+                                <a href="/SystemAdmin/AccountingRecord/AccountingDetail.aspx?ID=<%# Eval("ID") %>">修改</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -68,7 +60,7 @@
                         流水帳管理表目前無資料
                     </p>
                 </asp:PlaceHolder>
-        </tr>
+            </td>
         </tr>
     </table>
 </asp:Content>
