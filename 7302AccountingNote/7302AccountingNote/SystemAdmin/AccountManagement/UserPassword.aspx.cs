@@ -129,13 +129,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return false;
             }
 
-            //// 密碼長度限制 (8~16)
-            //if (this.txtPwdNew.Text.Length < 8 || this.txtPwdNew.Text.Length > 16)
-            //{
-            //    msgList.Add("密碼長度限制 (需要8~16碼)");
-            //    errorMsgList = msgList;
-            //    return false;
-            //}
+            // 密碼長度限制 (8~16)
+            if (this.txtPwdNew.Text.Length < 8 || this.txtPwdNew.Text.Length > 16)
+            {
+                msgList.Add("密碼長度限制 (需要8~16碼)");
+                errorMsgList = msgList;
+                return false;
+            }
 
             // 新密碼-原密碼是否匹配
             if (this.txtPwdOri.Text == this.txtPwdNew.Text)
