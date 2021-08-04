@@ -10,7 +10,6 @@ namespace AccountingNote.DBSource
 {
     public class AccountingManager
     {
-
         /// <summary> 查詢流水帳清單 </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
@@ -19,12 +18,12 @@ namespace AccountingNote.DBSource
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" SELECT
-                        ID,
-                        CreateDate,
-                        ActType,
-                        Amount,
-                        Caption
-                    FROM AccountingNote
+                        [ID],
+                        [CreateDate],
+                        [ActType],
+                        [Amount],
+                        [Caption]
+                    FROM [AccountingNote]
                     WHERE UserID = @userID
                 ";
 
@@ -42,7 +41,6 @@ namespace AccountingNote.DBSource
             }
         }
 
-
         /// <summary> 查詢流水帳 </summary>
         /// <param name="id"></param>
         /// <param name="userID"></param>
@@ -52,13 +50,13 @@ namespace AccountingNote.DBSource
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" SELECT 
-                        ID,
-                        Caption,
-                        Amount,
-                        ActType,
-                        CreateDate,
-                        Body
-                    FROM [7302AccountingNote].[dbo].[AccountingNote]
+                        [ID],
+                        [Caption],
+                        [Amount],
+                        [ActType],
+                        [CreateDate],
+                        [Body]
+                    FROM [AccountingNote]
                     WHERE id = @id AND UserID = @userID
                 "; // userID = 防止偷看其他使用者的資料
 
@@ -76,7 +74,6 @@ namespace AccountingNote.DBSource
                 return null;
             }
         }
-
 
         /// <summary> 建立流水帳 </summary>
         /// <param name="userID"></param>
@@ -98,12 +95,12 @@ namespace AccountingNote.DBSource
             string dbCommand =
                 $@" INSERT INTO [AccountingNote]
                     (
-                        UserID
-                       ,Caption
-                       ,Amount
-                       ,ActType
-                       ,CreateDate
-                       ,Body
+                        [UserID]
+                       ,[Caption]
+                       ,[Amount]
+                       ,[ActType]
+                       ,[CreateDate]
+                       ,[Body]
                     )
                     VALUES
                     (
@@ -134,7 +131,6 @@ namespace AccountingNote.DBSource
             }
         }
 
-
         /// <summary> 編輯流水帳</summary>
         /// <param name="ID"></param>
         /// <param name="userID"></param>
@@ -157,12 +153,12 @@ namespace AccountingNote.DBSource
             string dbCommand =
                 $@" UPDATE [AccountingNote]
                     SET
-                       UserID      = @userID
-                       ,Caption    = @caption
-                       ,Amount     = @amount
-                       ,ActType    = @actType
-                       ,CreateDate = @createDate
-                       ,Body       = @body
+                        [UserID]     = @userID
+                       ,[Caption]    = @caption
+                       ,[Amount]     = @amount
+                       ,[ActType]    = @actType
+                       ,[CreateDate] = @createDate
+                       ,[Body]       = @body
                     WHERE
                         ID = @id ";
 
@@ -191,7 +187,6 @@ namespace AccountingNote.DBSource
                 return false;
             }
         }
-
 
         /// <summary> 刪除流水帳 </summary>
         /// <param name="ID"></param>
