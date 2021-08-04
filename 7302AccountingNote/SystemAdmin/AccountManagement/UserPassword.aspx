@@ -14,11 +14,11 @@
                 <asp:Label ID="lblAccount" runat="server" Text="帳號"></asp:Label>
                 <asp:Literal ID="ltAccount" runat="server"></asp:Literal><br />
                 <asp:Label ID="lblPwdOri" runat="server" Text="原密碼"></asp:Label>
-                <asp:TextBox ID="txtPwdOri" runat="server"></asp:TextBox><br /><br />
+                <asp:TextBox ID="txtPwdOri" runat="server" TextMode="Password"></asp:TextBox><br /><br />
                 <asp:Label ID="lblPwdNew" runat="server" Text="新密碼"></asp:Label>
-                <asp:TextBox ID="txtPwdNew" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtPwdNew" runat="server" TextMode="Password"></asp:TextBox><br />
                 <asp:Label ID="lblPwdNewConfirm" runat="server" Text="確認新密碼"></asp:Label>
-                <asp:TextBox ID="txtPwdNewConfirm" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtPwdNewConfirm" runat="server" TextMode="Password"></asp:TextBox><br />
                 <asp:Button ID="btnSave" runat="server" Text="儲存" OnClick="btnSave_Click" />
                 
                 <br />
