@@ -84,14 +84,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 Response.Redirect("/Login.aspx");
                 return;
             }
-            //string account = this.Session["UserLoginInfo"] as string;
-            //var dr = UserInfoManager.GetUserInfoByAccount(account);
-
-            //if (dr == null)
-            //{
-            //    Response.Redirect("/Login.aspx");
-            //    return;
-            //}
 
             var CurrentUser = AuthManager.GetCurrentUser();
             // Input txt

@@ -171,8 +171,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return;
             }
 
-            //var NewUser = AuthManager.GetCurrentUser();
-
             // Input txt
             string newGUID = this.txtGuid.Text;
             string newAccount = this.txtAccount.Text;

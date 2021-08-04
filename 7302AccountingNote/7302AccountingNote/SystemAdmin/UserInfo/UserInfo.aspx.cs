@@ -14,7 +14,6 @@ namespace _7302AccountingNote.SystemAdmin.UserInfo
         {
             if (!this.IsPostBack) // 可能是按鈕跳回本頁，所以要判斷 postback
             {
-                //if (this.Session["UserLoginInfo"] == null)
                 if (!AuthManager.IsLogined()) // Session存不存在，如果尚未登入，導至登入頁
                 {
                     Response.Redirect("/Login.aspx");
@@ -25,7 +24,6 @@ namespace _7302AccountingNote.SystemAdmin.UserInfo
 
                 if (CurrentUser == null) // 如果帳號不存在，導至登入頁 (有可能被管理者砍帳號)
                 {
-                    //this.Session["UserLoginInfo"] = null; // 才不會無限迴圈，導來導去
                     Response.Redirect("/Login.aspx");
                     return;
                 }
@@ -40,7 +38,6 @@ namespace _7302AccountingNote.SystemAdmin.UserInfo
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            //this.Session["UserLoginInfo"] = null;
             AuthManager.Logout(); // 登出，並導至登入頁
             Response.Redirect("/Login.aspx");
         }

@@ -26,7 +26,6 @@
                 &nbsp;&nbsp;
                     <asp:Button ID="btnDelete" runat="server" Text="刪除" OnClick="btnDelete_Click" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnchangePWD" runat="server" Text="前往變更密碼" Width="118px" OnClick="btnchangePWD_Click"/>
-                <%--CommandArgument='<%# Eval("ID") %>' CommandName="DeleteAccounting--%>
                 <br />
                 <asp:Literal ID="ltmsg" runat="server"></asp:Literal>
 

@@ -28,6 +28,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return;
             }
 
+
             if (!this.IsPostBack)
             {
                 // Check is create mode or edit mode
@@ -37,16 +38,8 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 }
                 else // 編輯模式
                 {
-                    //this.btnDelete.Visible = true;
-
                     string GUIDtext = this.Request.QueryString["UID"];
 
-                    //string idText = this.Request.QueryString["ID"]; // 讀取ID
-                    //int id;
-
-                    //if (int.TryParse(GUIDtext, out GUID)) // 檢查是否能轉型成數字
-                    //{
-                    // var drAccounting = AccountingManager.GetAccounting(id,CurrentUser.ID);
                     var drAccounting = UserInfoManager.GetUserListForUserDetail(GUIDtext);
 
                     if (drAccounting == null)
@@ -61,6 +54,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                     }
                 }
             }
+
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -81,22 +75,20 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return;
             }
 
-       
-            string txtPwdNew = this.txtPwdNew.Text;           
+            string txtPwdNew = this.txtPwdNew.Text;
             string uidText = this.Request.QueryString["UID"];
 
             UserInfoManager.UpdatePwd(txtPwdNew, uidText);
 
             this.Session["UserLoginInfo"] = null;
             Response.Redirect("/Login.aspx");
-            //UserInfoManager.UpdateUserInfo(name, email, uidText);
-
         }
 
         private bool CheckInput(out List<string> errorMsgList)
         {
             List<string> msgList = new List<string>();
             string uidText = this.Request.QueryString["UID"];
+
             // 原密碼不可為空
             if (string.IsNullOrWhiteSpace(this.txtPwdOri.Text))
             {
@@ -105,11 +97,10 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return false;
             }
 
-
             // 原密碼是否正確
             if (!UserInfoManager.CheckPwdIsCorrect(this.txtPwdOri.Text, uidText))
             {
-                msgList.Add("舊密碼不正確");
+                msgList.Add("原密碼不正確");
                 errorMsgList = msgList;
                 return false;
             }
@@ -146,7 +137,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             //    return false;
             //}
 
-            // 新密碼-舊密碼是否匹配
+            // 新密碼-原密碼是否匹配
             if (this.txtPwdOri.Text == this.txtPwdNew.Text)
             {
                 msgList.Add("新密碼與原密碼不可相同");

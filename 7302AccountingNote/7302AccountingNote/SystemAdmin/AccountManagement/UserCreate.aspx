@@ -44,7 +44,6 @@
                 <asp:Button ID="btnSave" runat="server" Text="儲存" OnClick="btnSave_Click" />
                 &nbsp;&nbsp;
                     
-                <%--CommandArgument='<%# Eval("ID") %>' CommandName="DeleteAccounting--%>
                 <br />
                 <asp:Literal ID="ltmsg" runat="server"></asp:Literal>
             </td>

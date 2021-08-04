@@ -15,8 +15,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // check is logined
-            //if (this.Session["UserLoginInfo"] == null)
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -36,15 +34,16 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
             var dt = AccountingManager.GetAccountingList(CurrentUser.ID);
 
             //-------小計--------
-            int answer=0;
-            
-            for (int i = 0; i < dt.Rows.Count; i++) {
+            int answer = 0;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
                 if ((int)dt.Rows[i][2] == 0)
                 { answer -= (int)dt.Rows[i][3]; }
                 else if ((int)dt.Rows[i][2] == 1)
                 { answer += (int)dt.Rows[i][3]; }
             }
-                
+
             TotalAccount.Text = $"小計 {answer:C0} 元";  //驗證
 
             //-------小計end--------
@@ -53,7 +52,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
             {
                 this.gvAccountingList.DataSource = dt; // 資料繫結
                 this.gvAccountingList.DataBind();
-
             }
             else
             {
@@ -79,7 +77,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
         //{
         //    this.ltpager.Text += $"<a href='AccountingList.aspx?page={i}'>{i}</a>&nbsp";
         //}
-
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
@@ -116,6 +113,5 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 }
             }
         }
-        
     }
 }

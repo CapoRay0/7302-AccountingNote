@@ -29,7 +29,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 Response.Redirect("/Login.aspx");
                 return;
             }
-            
+
             if (!this.IsPostBack)
             {
                 // Check is create mode or edit mode
@@ -42,32 +42,25 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                     this.btnDelete.Visible = true;
 
                     string GUIDtext = this.Request.QueryString["UID"];
-                
-                    //string idText = this.Request.QueryString["ID"]; // 讀取ID
-                    //int id;
-                    
-                    //if (int.TryParse(GUIDtext, out GUID)) // 檢查是否能轉型成數字
-                    //{
-                        // var drAccounting = AccountingManager.GetAccounting(id,CurrentUser.ID);
-                        var drAccounting = UserInfoManager.GetUserListForUserDetail(GUIDtext);
 
-                        if (drAccounting == null)
-                        {
-                            this.ltmsg.Text = "資料不存在";
-                            this.btnSave.Visible = false;
-                            this.btnDelete.Visible = false;
-                        }
-                        else // 把原本的資料帶入編輯頁面以供使用者編輯!!
-                        {
-                            this.ltAccount.Text = drAccounting["Account"].ToString();
-                            this.txtName.Text = drAccounting["Name"].ToString();
-                            this.txtEmail.Text = drAccounting["Email"].ToString();
-                            this.ltUserLevel.Text = drAccounting["UserLevel"].ToString();
-                            this.ltCreateDate.Text = drAccounting["CreateDate"].ToString();
-                        }
+                    var drAccounting = UserInfoManager.GetUserListForUserDetail(GUIDtext);
+
+                    if (drAccounting == null)
+                    {
+                        this.ltmsg.Text = "資料不存在";
+                        this.btnSave.Visible = false;
+                        this.btnDelete.Visible = false;
+                    }
+                    else // 把原本的資料帶入編輯頁面以供使用者編輯!!
+                    {
+                        this.ltAccount.Text = drAccounting["Account"].ToString();
+                        this.txtName.Text = drAccounting["Name"].ToString();
+                        this.txtEmail.Text = drAccounting["Email"].ToString();
+                        this.ltUserLevel.Text = drAccounting["UserLevel"].ToString();
+                        this.ltCreateDate.Text = drAccounting["CreateDate"].ToString();
+                    }
                 }
             }
-
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -93,23 +86,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 Response.Redirect("/Login.aspx");
                 return;
             }
-            //string account = this.Session["UserLoginInfo"] as string;
-            //var dr = UserInfoManager.GetUserInfoByAccount(account);
-
-            //if (dr == null)
-            //{
-            //    Response.Redirect("/Login.aspx");
-            //    return;
-            //}
 
             string name = this.txtName.Text;
             string email = this.txtEmail.Text;
 
-
             // Check is create mode or edit mode
             string uidText = this.Request.QueryString["UID"];
             UserInfoManager.UpdateUserInfo(name, email, uidText);
-
 
         }
 
@@ -149,8 +132,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return false;
         }
 
-
-
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string uidText = this.Request.QueryString["UID"];
@@ -164,9 +145,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             string uidText = this.Request.QueryString["UID"];
             Response.Redirect($"/SystemAdmin/AccountManagement/UserPassword.aspx?UID={uidText}");
         }
-
-
-
 
     }
 }

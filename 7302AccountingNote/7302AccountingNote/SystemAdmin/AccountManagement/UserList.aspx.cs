@@ -31,23 +31,19 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             }
 
             //-------抓到user info，做資料連結-----
-            
+
             var userInfo = UserInfoManager.GetUserInfoForUserList();
             this.gvUserList.DataSource = userInfo; // 資料繫結
             this.gvUserList.DataBind();
-
             //Response.Write(userInfo.Rows[0][0].ToString());//驗證
 
             //-------抓到user info，做資料連結end------
         }
 
-        protected void btnCreate_Click(object sender, EventArgs e)  
+        protected void btnCreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("/SystemAdmin/AccountManagement/UserCreate.aspx");
         }
-
-
-
 
     }
 }
