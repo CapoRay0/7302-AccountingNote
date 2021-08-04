@@ -53,11 +53,12 @@ namespace AccountingNote.Auth
 
             return model;
         }
-        /// <summary> 登出 </summary>
-        public static void Logout()
-        {
-            HttpContext.Current.Session["UserLoginInfo"] = null;
-        }
+
+        /// <summary> 登入 </summary>
+        /// <param name="account"></param>
+        /// <param name="pwd"></param>
+        /// <param name="errorMsg"></param>
+        /// <returns></returns>
         public static bool TryLogin(string account, string pwd, out string errorMsg)
         {
             // check empty
@@ -82,19 +83,22 @@ namespace AccountingNote.Auth
                 string.Compare(dr["PWD"].ToString(), pwd, false) == 0) // 因密碼要強制大小寫因此設定為false
             {
                 HttpContext.Current.Session["UserLoginInfo"] = dr["Account"].ToString(); // 正確!!，跳頁至 UserInfo.aspx
-                //Response.Redirect("/SystemAdmin/UserInfo.aspx");
                 errorMsg = string.Empty;
                 return true;
             }
             else
             {
-                //this.ltlMsg.Text = "Login failed. Please check PWD.";
                 errorMsg = "Login failed. Please check PWD.";
                 return false;
             }
 
         }
 
+        /// <summary> 登出 </summary>
+        public static void Logout()
+        {
+            HttpContext.Current.Session["UserLoginInfo"] = null;
+        }
 
     }
 }
