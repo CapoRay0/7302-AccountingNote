@@ -135,12 +135,14 @@ namespace AccountingNote.DBSource
         }
 
 
-        /// <summary> 編輯流水帳 </summary>
+        /// <summary> 編輯流水帳</summary>
+        /// <param name="ID"></param>
         /// <param name="userID"></param>
         /// <param name="caption"></param>
         /// <param name="amount"></param>
         /// <param name="actType"></param>
         /// <param name="body"></param>
+        /// <returns></returns>
         public static bool UpdateAccounting(int ID, string userID, string caption, int amount, int actType, string body)
         {
             // <<<<< check input >>>>>
@@ -189,8 +191,6 @@ namespace AccountingNote.DBSource
                 return false;
             }
         }
-
-
 
 
         /// <summary> 刪除流水帳 </summary>

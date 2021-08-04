@@ -15,6 +15,24 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
     {
 
         /// <summary>
+        /// lblGUID 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGUID;
+
+        /// <summary>
+        /// txtGuid 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGuid;
+
+        /// <summary>
         /// lblAccount 控制項。
         /// </summary>
         /// <remarks>
@@ -24,13 +42,49 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
         protected global::System.Web.UI.WebControls.Label lblAccount;
 
         /// <summary>
-        /// ltAccount 控制項。
+        /// txtAccount 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltAccount;
+        protected global::System.Web.UI.WebControls.TextBox txtAccount;
+
+        /// <summary>
+        /// lblPWD 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPWD;
+
+        /// <summary>
+        /// txtPWD 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPWD;
+
+        /// <summary>
+        /// lblPWDConfirm 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPWDConfirm;
+
+        /// <summary>
+        /// txtPWDConfirm 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPWDConfirm;
 
         /// <summary>
         /// lblName 控制項。
@@ -78,31 +132,22 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
         protected global::System.Web.UI.WebControls.Label lblUserLevel;
 
         /// <summary>
-        /// ltUserLevel 控制項。
+        /// RadbtnnewManager 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltUserLevel;
+        protected global::System.Web.UI.WebControls.RadioButton RadbtnnewManager;
 
         /// <summary>
-        /// lblCreateDate 控制項。
+        /// RadbtnnewUser 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCreateDate;
-
-        /// <summary>
-        /// ltCreateDate 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltCreateDate;
+        protected global::System.Web.UI.WebControls.RadioButton RadbtnnewUser;
 
         /// <summary>
         /// btnSave 控制項。

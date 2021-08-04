@@ -30,10 +30,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return;
             }
             
-
-
-
-            
             if (!this.IsPostBack)
             {
                 // Check is create mode or edit mode
@@ -72,15 +68,15 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 }
             }
 
-
-
-
         }
-        
-
-
 
         protected void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveUploadedInfo();
+            Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
+        }
+
+        private void SaveUploadedInfo()
         {
             //如果輸入有誤就跳出
             List<string> msgList = new List<string>();
@@ -108,13 +104,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 
             string name = this.txtName.Text;
             string email = this.txtEmail.Text;
-            
+
 
             // Check is create mode or edit mode
             string uidText = this.Request.QueryString["UID"];
             UserInfoManager.UpdateUserInfo(name, email, uidText);
 
-            Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
+
         }
 
         private bool CheckInput(out List<string> errorMsgList)
@@ -164,8 +160,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 
         protected void btnchangePWD_Click(object sender, EventArgs e)
         {
-
-            Response.Redirect("/SystemAdmin/AccountManagement/UserPassword.aspx");
+            SaveUploadedInfo();
+            string uidText = this.Request.QueryString["UID"];
+            Response.Redirect($"/SystemAdmin/AccountManagement/UserPassword.aspx?UID={uidText}");
         }
 
 
