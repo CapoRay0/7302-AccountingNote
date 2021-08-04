@@ -11,12 +11,18 @@ namespace AccountingNote.DBSource
 {
     public class UserInfoManager
     {
-        public static DataRow GetUserInfoByAccount(string account) //帶參數進來
+        public static DataRow GetUserInfoByAccount(string account)
         {
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
-                @"SELECT [ID], [Account], [PWD], [Name], [Email], [UserLevel], [CreateDate]
-                    FROM UserInfo
+                $@"SELECT [ID]
+                        , [Account]
+                        , [PWD]
+                        , [Name]
+                        , [Email]
+                        , [UserLevel]
+                        , [CreateDate]
+                    FROM [UserInfo]
                     WHERE [Account] = @account
                 ";
 
@@ -30,28 +36,25 @@ namespace AccountingNote.DBSource
             catch (Exception ex)
             {
                 Logger.WriteLog(ex);
-                //Console.WriteLine(ex.ToString());
                 return null;
             }
         }
 
-        public static DataTable GetUserInfoForUserList() //帶參數進來
+        public static DataTable GetUserInfoForUserList()
         {
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
-                @"SELECT
-                      [ID] as UID
-                    , [Account]
-                    , [Name]
-                    , [Email]
-                    , [UserLevel]
-                    , [CreateDate]
-                    FROM UserInfo
+                $@"SELECT [ID] as UID
+                        , [Account]
+                        , [Name]
+                        , [Email]
+                        , [UserLevel]
+                        , [CreateDate]
+                    FROM [UserInfo]
                     ORDER BY [CreateDate] DESC
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
-            //list.Add(new SqlParameter("@account", account));
 
             try
             {
@@ -60,7 +63,6 @@ namespace AccountingNote.DBSource
             catch (Exception ex)
             {
                 Logger.WriteLog(ex);
-                //Console.WriteLine(ex.ToString());
                 return null;
             }
         }
@@ -69,16 +71,15 @@ namespace AccountingNote.DBSource
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" SELECT 
-                        ID,
-                        Account,
-                        Name,
-                        Email,
-                        UserLevel,
-                        CreateDate
+                $@"SELECT [ID]
+                        , [Account]
+                        , [Name]
+                        , [Email]
+                        , [UserLevel]
+                        , [CreateDate]
                     FROM [UserInfo]
                     WHERE ID = @userID
-                "; // userID = 防止偷看其他使用者的資料
+                ";
 
             List<SqlParameter> list = new List<SqlParameter>();
 
@@ -107,15 +108,15 @@ namespace AccountingNote.DBSource
 
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" INSERT INTO [UserInfo]
+                $@"INSERT INTO [UserInfo]
                     (
-                        ID
-                       ,Account
-                       ,PWD
-                       ,Name
-                       ,Email
-                       ,UserLevel
-                       ,CreateDate
+                        [ID]
+                       ,[Account]
+                       ,[PWD]
+                       ,[Name]
+                       ,[Email]
+                       ,[UserLevel]
+                       ,[CreateDate]
                     )
                     VALUES
                     (
@@ -148,14 +149,19 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 修改使用者 </summary>
+        /// <param name="name"></param>
+        /// <param name="email"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public static bool UpdateUserInfo(string name, string email, string uid)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" UPDATE [UserInfo]
                     SET
-                       [Name]      = @name
-                       ,[Email]    = @email
+                        [Name]   = @name
+                       ,[Email]  = @email
                     WHERE
                         ID = @uid ";
 
@@ -181,11 +187,13 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 刪除使用者 </summary>
+        /// <param name="uid"></param>
         public static void DeleteUser(string uid)
         {
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
-                @" DELETE [UserInfo]
+                $@" DELETE [UserInfo]
                     WHERE ID = @uid ";
 
             List<SqlParameter> paramList = new List<SqlParameter>();
@@ -201,14 +209,17 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 原密碼檢查 </summary>
+        /// <param name="InpPwd"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public static bool CheckPwdIsCorrect(string InpPwd, string uid)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" SELECT 
-                            [PWD]
-                        FROM [UserInfo]
-                        WHERE ID = @uid ";
+                $@" SELECT [PWD]
+                    FROM [UserInfo]
+                    WHERE ID = @uid ";
 
             List<SqlParameter> paramList = new List<SqlParameter>();
             paramList.Add(new SqlParameter("@uid", uid));
@@ -230,15 +241,17 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 修改密碼 </summary>
+        /// <param name="pwd"></param>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public static bool UpdatePwd(string pwd, string uid)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" UPDATE [UserInfo]
-                    SET
-                       [PWD]      = @pwd                     
-                    WHERE
-                        ID = @uid ";
+                    SET [PWD] = @pwd                     
+                    WHERE ID = @uid ";
 
             List<SqlParameter> paramList = new List<SqlParameter>();
             paramList.Add(new SqlParameter("@pwd", pwd));
@@ -262,14 +275,16 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 檢查GUID是否重複 </summary>
+        /// <param name="InpGUID"></param>
+        /// <returns></returns>
         public static bool CheckGUIDIsCorrect(string InpGUID)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" SELECT 
-                            [ID]
-                        FROM [UserInfo]
-                        WHERE ID = @InpGUID
+                $@" SELECT [ID]
+                    FROM [UserInfo]
+                    WHERE ID = @InpGUID
                    ";
 
             List<SqlParameter> paramList = new List<SqlParameter>();
