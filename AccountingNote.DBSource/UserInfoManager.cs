@@ -40,7 +40,7 @@ namespace AccountingNote.DBSource
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
                 @"SELECT
-                      [ID] 
+                      [ID] as UID
                     , [Account]
                     , [Name]
                     , [Email]
@@ -63,5 +63,91 @@ namespace AccountingNote.DBSource
                 return null;
             }
         }
+
+
+        public static DataRow GetUserListForUserDetail(string userID)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@" SELECT 
+                        ID,
+                        Account,
+                        Name,
+                        Email,
+                        UserLevel,
+                        CreateDate
+                    FROM [UserInfo]
+                    WHERE ID = @userID
+                "; // userID = 防止偷看其他使用者的資料
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            
+            list.Add(new SqlParameter("@userID", userID));
+
+            try
+            {
+                return DBHelper.ReadDataRow(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+        public static bool UpdateUserInfo(string name, string email, string uid)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@" UPDATE [UserInfo]
+                    SET
+                       [Name]      = @name
+                       ,[Email]    = @email
+                    WHERE
+                        ID = @uid ";
+
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@name", name));
+            paramList.Add(new SqlParameter("@email", email));
+            paramList.Add(new SqlParameter("@uid", uid));
+
+            try
+            {
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, paramList);
+
+                if (effectRows == 1)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
+            }
+        }
+
+        public static void DeleteUser(string uid)
+        {
+            string connectionString = DBHelper.GetConnectionString();
+            string dbCommandString =
+                @" DELETE [UserInfo]
+                    WHERE ID = @uid ";
+
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@uid", uid));
+
+            try
+            {
+                DBHelper.ModifyData(connectionString, dbCommandString, paramList);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }
+        }
+
+
     }
 }

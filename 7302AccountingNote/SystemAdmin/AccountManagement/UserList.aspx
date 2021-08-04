@@ -26,7 +26,7 @@
                         <asp:BoundField HeaderText="建立時間" DataField="CreateDate" />
                         <asp:TemplateField HeaderText="編輯">
                             <ItemTemplate>
-                                <a href="/SystemAdmin/AccountManagement/UserDetail.aspx?ID=<%# Eval("ID") %>">修改</a>
+                                <a href="/SystemAdmin/AccountManagement/UserDetail.aspx?UID=<%# Eval("UID") %>">修改</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

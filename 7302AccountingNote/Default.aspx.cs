@@ -28,7 +28,7 @@ namespace _7302AccountingNote
 
         public static DataTable GetTime()
         {
-            string connnectionString = DBHelper.GetConnectionString();
+            string connectionString = DBHelper.GetConnectionString();
             string dbCommandString = 
                 $@" SELECT 
                     [CreateDate]
@@ -40,7 +40,7 @@ namespace _7302AccountingNote
             //list.Add(new SqlParameter("@userID", userID));
             try
             {
-                return DBHelper.ReadDataTable(connnectionString, dbCommandString, list);
+                return DBHelper.ReadDataTable(connectionString, dbCommandString, list);
             }
             catch (Exception ex)
             {
@@ -49,11 +49,10 @@ namespace _7302AccountingNote
             }
         }
 
-        
 
         public static string GetTotalAcc()
         {
-            string connnectionString = DBHelper.GetConnectionString();
+            string connectionString = DBHelper.GetConnectionString();
             string dbCommandString = 
                 $@" SELECT 
                         Count ([ID]) as Cnt
@@ -62,7 +61,7 @@ namespace _7302AccountingNote
             List<SqlParameter> list = new List<SqlParameter>();
             try
             {
-                var dr = DBHelper.ReadDataRow(connnectionString, dbCommandString, list);
+                var dr = DBHelper.ReadDataRow(connectionString, dbCommandString, list);
                 //int ans = Int32.Parse(dt.Rows[0]);
                 string ans = dr[0].ToString();
                 return ans;
@@ -76,7 +75,7 @@ namespace _7302AccountingNote
 
         public static string GetUserCount()
         {
-            string connnectionString = DBHelper.GetConnectionString();
+            string connectionString = DBHelper.GetConnectionString();
             string dbCommandString = 
                 $@" SELECT
                         Count ([ID]) 
@@ -85,7 +84,7 @@ namespace _7302AccountingNote
             List<SqlParameter> list = new List<SqlParameter>();
             try
             {
-                var dr = DBHelper.ReadDataRow(connnectionString, dbCommandString, list);
+                var dr = DBHelper.ReadDataRow(connectionString, dbCommandString, list);
                 string ans = dr[0].ToString();
                 return ans;
             }

@@ -191,6 +191,8 @@ namespace AccountingNote.DBSource
         }
 
 
+
+
         /// <summary> 刪除流水帳 </summary>
         /// <param name="ID"></param>
         public static void DeleteAccounting(int ID)
