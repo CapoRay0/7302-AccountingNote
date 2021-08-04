@@ -13,7 +13,6 @@ namespace AccountingNote.DBSource
             string msg =
                 $@" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}
                     {ex.ToString()}
-
                 ";
 
             string logPath = "D:\\Logs\\Log.log";

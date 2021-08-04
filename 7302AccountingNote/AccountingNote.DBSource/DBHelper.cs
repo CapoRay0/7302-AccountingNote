@@ -11,23 +11,26 @@ namespace AccountingNote.DBSource
 {
     public class DBHelper
     {
+        /// <summary> 連接字串 </summary>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
             string val = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             return val;
         }
 
-
-        // 讀取清單的Method，抽到共用方法中
+        /// <summary> 讀取清單的Method，抽到共用方法中 </summary>
+        /// <param name="connStr"></param>
+        /// <param name="dbCommand"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static DataTable ReadDataTable(string connStr, string dbCommand, List<SqlParameter> list)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                 {
-                    //comm.Parameters.AddWithValue("@userID", userID);
                     comm.Parameters.AddRange(list.ToArray());
-
 
                     conn.Open();
                     var reader = comm.ExecuteReader();
@@ -40,7 +43,12 @@ namespace AccountingNote.DBSource
             }
         }
 
-        public static DataRow ReadDataRow(string connStr, string dbCommand, List<SqlParameter> list) // AccountingManager的
+        /// <summary> AccountingManager的 </summary>
+        /// <param name="connStr"></param>
+        /// <param name="dbCommand"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static DataRow ReadDataRow(string connStr, string dbCommand, List<SqlParameter> list)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -63,7 +71,12 @@ namespace AccountingNote.DBSource
                 }
             }
         }
-        // UpdateAccounting 與 DeleteAccounting 的重構
+
+        /// <summary> UpdateAccounting 與 DeleteAccounting 的重構 </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="dbCommandString"></param>
+        /// <param name="paramList"></param>
+        /// <returns></returns>
         public static int ModifyData(string connectionString, string dbCommandString, List<SqlParameter> paramList)
         {
             // connect db & execute
@@ -71,8 +84,6 @@ namespace AccountingNote.DBSource
             {
                 using (SqlCommand comm = new SqlCommand(dbCommandString, conn))
                 {
-
-                    //comm.Parameters.AddWithValue("@id", ID);
                     comm.Parameters.AddRange(paramList.ToArray());
 
                     conn.Open();
@@ -81,7 +92,11 @@ namespace AccountingNote.DBSource
                 }
             }
         }
-        // CreateAccounting 的重構
+
+        /// <summary> CreateAccounting 的重構 </summary>
+        /// <param name="connStr"></param>
+        /// <param name="dbCommand"></param>
+        /// <param name="paramList"></param>
         public static void CreatData(string connStr, string dbCommand, List<SqlParameter> paramList)
         {
             // connect db & execute
@@ -89,12 +104,6 @@ namespace AccountingNote.DBSource
             {
                 using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                 {
-                    //comm.Parameters.AddWithValue("@userID", userID);
-                    //comm.Parameters.AddWithValue("@caption", caption);
-                    //comm.Parameters.AddWithValue("@amount", amount);
-                    //comm.Parameters.AddWithValue("@actType", actType);
-                    //comm.Parameters.AddWithValue("@createDate", DateTime.Now);
-                    //comm.Parameters.AddWithValue("@body", body);
                     comm.Parameters.AddRange(paramList.ToArray());
 
                     conn.Open();
