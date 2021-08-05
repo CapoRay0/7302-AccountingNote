@@ -10,7 +10,7 @@
             </tr>
             <tr>
                 <td>
-                    <table border="1">
+                    <table>
                         <tr>
                             <th>帳號</th>
                             <td>
