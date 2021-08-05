@@ -59,6 +59,7 @@
                         流水帳管理表目前無資料
                     </p>
                 </asp:PlaceHolder>
+                <asp:Literal ID="ltmsg" runat="server"></asp:Literal>
             </td>
         </tr>
     </table>

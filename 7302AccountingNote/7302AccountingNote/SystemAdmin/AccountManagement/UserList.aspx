@@ -53,6 +53,7 @@
                         無會員資料
                     </p>
                 </asp:PlaceHolder>
+                <asp:Literal ID="ltmsg" runat="server"></asp:Literal>
 
             </td>
         </tr>

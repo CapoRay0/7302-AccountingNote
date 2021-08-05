@@ -89,7 +89,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 
             if (intPage <= 0) // (錯誤) 0或以下，也給第一頁
                 return 1;
-
             return intPage;
         }
 
@@ -98,12 +97,25 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
         /// <returns></returns>
         private DataTable GetPagedDataTable(DataTable dt)
         {
+
+
+
             DataTable dtPaged = dt.Clone(); //只拿結構
             //dt.Copy(); // 除了結構還拿資料，但0筆的話會出錯
 
             int pageSize = this.Pager.PageSize;
             int startIndex = (this.GetCurrentPage() - 1) * pageSize;
             int endIndex = this.GetCurrentPage() * pageSize;
+
+            //驗證頁數不大於最大頁數
+            string pageText = Request.QueryString["Page"];
+            int intPage = Convert.ToInt32(pageText);
+            if (((intPage - 1) * pageSize) >= dt.Rows.Count || intPage < 0)
+            {
+                this.ltmsg.Text = "不正確的頁數";
+                this.Pager.Visible = false;
+                return null;
+            }
 
             if (endIndex > dt.Rows.Count)
                 endIndex = dt.Rows.Count;
@@ -120,6 +132,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 
                 dtPaged.Rows.Add(drNew);
             }
+            this.Pager.Visible = true;
             return dtPaged;
         }
 

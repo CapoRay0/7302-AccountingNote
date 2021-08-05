@@ -161,7 +161,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             }
 
             // Email長度限制
-            if (this.txtName.Text.Length >= 100)
+            if (this.txtEmail.Text.Length >= 100)
             {
                 msgList.Add("Email長度不可超過100");
                 errorMsgList = msgList;
