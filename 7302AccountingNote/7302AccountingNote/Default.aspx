@@ -1,28 +1,30 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="_7302AccountingNote.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="_7302AccountingNote.DefaultPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<!DOCTYPE html>
+    <table border="0" align="center" valign="center">
+            <tr>
+                <td width="100">
+                    <asp:Label ID="lblFstRec" runat="server" Text="初次記帳"></asp:Label><br /><br />
+                    <asp:Label ID="lblLstRec" runat="server" Text="最後記帳"></asp:Label><br /><br />
+                    <asp:Label ID="lblTotalAcc" runat="server" Text="記帳數量"></asp:Label><br /><br />
+                    <asp:Label ID="lblUserNum" runat="server" Text="會員數"></asp:Label><br /><br />
+                </td>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+                <td width="200" align="center">
+                    <asp:Literal ID="ltFstRec" runat="server"></asp:Literal><br /><br />
+                    <asp:Literal ID="ltLstRec" runat="server"></asp:Literal><br /><br />
+                    <asp:Literal ID="ltTotalAcc" runat="server"></asp:Literal><br /><br />
+                    <asp:Literal ID="ltUserNum" runat="server"></asp:Literal><br /><br />
+                </td>
+            </tr>
 
-        <div>
-            <asp:Label ID="lblFstRec" runat="server" Text="初次記帳"></asp:Label><br />
-            <asp:Literal ID="ltFstRec" runat="server"></asp:Literal><br />
-            <asp:Label ID="lblLstRec" runat="server" Text="最後記帳"></asp:Label><br />
-            <asp:Literal ID="ltLstRec" runat="server"></asp:Literal><br />
-            <asp:Label ID="lblTotalAcc" runat="server" Text="記帳數量"></asp:Label><br />
-            <asp:Literal ID="ltTotalAcc" runat="server"></asp:Literal><br />
-            <asp:Label ID="lblUserNum" runat="server" Text="會員數"></asp:Label><br />
-            <asp:Literal ID="ltUserNum" runat="server"></asp:Literal><br />
+            <tr>
+                <td colspan="2" align="center">
+                    <asp:Button ID="btnLogin" runat="server" Text="登入系統" OnClick="btnLogin_Click" />
+                </td>
+            </tr>
+        </table>
 
-            <asp:Button ID="btnLogin" runat="server" Text="登入系統" OnClick="btnLogin_Click" />
-        </div>
-
-    </form>
-</body>
-</html>
+</asp:Content>

@@ -85,7 +85,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
         /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            SaveUploadedInfo();
+            if(SaveUploadedInfo())
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
         }
 
@@ -102,14 +102,14 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
         /// <summary>
         /// 修改使用者方法
         /// </summary>
-        private void SaveUploadedInfo()
+        private bool SaveUploadedInfo()
         {
             //如果輸入有誤就跳出
             List<string> msgList = new List<string>();
             if (!this.CheckInput(out msgList))
             {
                 this.ltmsg.Text = string.Join("<br/>", msgList);
-                return;
+                return false;
             }
 
             //如果沒有登入就回頭
@@ -117,7 +117,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             if (currentUser == null)
             {
                 Response.Redirect("/Login.aspx");
-                return;
+                return false;
             }
 
             string name = this.txtName.Text;
@@ -125,6 +125,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 
             string uidText = this.Request.QueryString["UID"];
             UserInfoManager.UpdateUserInfo(name, email, uidText);
+            return true;
 
         }
 
@@ -154,7 +155,15 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             // 姓名長度限制
             if (this.txtName.Text.Length >= 50)
             {
-                msgList.Add("長度不可超過50");
+                msgList.Add("姓名長度不可超過50");
+                errorMsgList = msgList;
+                return false;
+            }
+
+            // Email長度限制
+            if (this.txtName.Text.Length >= 100)
+            {
+                msgList.Add("Email長度不可超過100");
                 errorMsgList = msgList;
                 return false;
             }
@@ -176,5 +185,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             UserInfoManager.DeleteUser(uidText);
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
         }
+
+
     }
 }

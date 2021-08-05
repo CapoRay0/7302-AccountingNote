@@ -91,13 +91,14 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return false;
             }
 
-            // 密碼長度限制
-            if (this.txtPWD.Text.Length >= 50)
+            // 密碼長度限制(8~16)
+            if (this.txtPWD.Text.Length < 8 || this.txtPWD.Text.Length>16)
             {
-                msgList.Add("密碼長度不可超過50字");
+                msgList.Add("密碼長度限制 (需要8~16碼)");
                 errorMsgList = msgList;
                 return false;
             }
+        
 
             // 請再次確認密碼 必填
             if (string.IsNullOrWhiteSpace(this.txtPWDConfirm.Text))
@@ -205,5 +206,10 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
         }
+
+        /// <summary> 驗證密碼修改(錯誤提示) </summary>
+        /// <param name="errorMsgList"></param>
+        /// <returns></returns>
+        
     }
 }

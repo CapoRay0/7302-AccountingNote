@@ -1,24 +1,44 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="_7302AccountingNote.Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="_7302AccountingNote.LoginPage" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <asp:PlaceHolder ID="plcLogin" runat="server" Visible="false">
-            帳號:
-            <asp:TextBox ID="txtAccount" runat="server"></asp:TextBox>
-            <br />
-            密碼:
-        <asp:TextBox ID="txtPWD" runat="server" TextMode="Password"></asp:TextBox>
-            <br />
-            <asp:Button ID="btnLogin" runat="server" Text="登入" OnClick="btnLogin_Click" />
-            <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
-        </asp:PlaceHolder>
-    </form>
-</body>
-</html>
+
+    <%--    <asp:PlaceHolder ID="plcLogin" runat="server" Visible="false">--%>
+    <table border="0" align="center" valign="center">
+        <tr align="center">
+            <td>
+                <asp:Label ID="Label1" runat="server"><h2>用戶登入</h2></asp:Label>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <p class="auto-style3">
+                    Fill in the Account and PWD to log in this awesome AccountingNote System.
+                </p>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <img src="Images/account.png" style="height: 20px; width: 20px" id="icon1" /> 帳號 &nbsp &nbsp
+                <asp:TextBox ID="txtAccount" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <img src="Images/password.png" style="height: 20px; width: 20px" id="icon2" /> 密碼 &nbsp &nbsp
+            <asp:TextBox ID="txtPWD" runat="server" TextMode="Password"></asp:TextBox>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <br />
+                <asp:Button ID="btnLogin" runat="server" Text="登入" OnClick="btnLogin_Click" /><br />
+                <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+            </td>
+        </tr>
+        <%--</asp:PlaceHolder>--%>
+    </table>
+
+</asp:Content>

@@ -77,7 +77,7 @@ namespace _7302AccountingNote.UserControls
             this.aLink4.Visible = (nextP1 <= totalPage);
             this.aLink5.Visible = (nextP2 <= totalPage);
 
-            this.ltpager.Text = $"</br>共 {this.TotalSize} 筆，共 {totalPage} 頁，目前在第 {this.GetCurrentPage()} 頁~<br/>";
+            this.ltpager.Text = $"</br></br>共 {this.TotalSize} 筆，共 {totalPage} 頁，目前在第 {this.GetCurrentPage()} 頁~<br/>";
         }
     }
 }

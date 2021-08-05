@@ -7,11 +7,11 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace _7302AccountingNote.SystemAdmin
+namespace _7302AccountingNote
 {
 
 
-    public partial class SystemAdmin
+    public partial class Default1
     {
 
         /// <summary>

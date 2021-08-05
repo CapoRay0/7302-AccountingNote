@@ -29,7 +29,7 @@
                                 <asp:Literal runat="server" ID="ltEmail"></asp:Literal>
                             </td>
                         </tr>
-                    </table>
+                    </table><br />
                     <asp:Button runat="server" ID="btnLogout" Text="登出" OnClick="btnLogout_Click"/>
                 </td>
             </tr>

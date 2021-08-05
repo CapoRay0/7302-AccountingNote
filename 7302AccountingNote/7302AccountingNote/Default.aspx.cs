@@ -10,7 +10,7 @@ using AccountingNote.DBSource;
 
 namespace _7302AccountingNote
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class DefaultPage : System.Web.UI.Page
     {
         /// <summary> 取得顯示資料的變數 / 顯示資料 </summary>
         /// <param name="sender"></param>
@@ -25,8 +25,8 @@ namespace _7302AccountingNote
             //-------------顯示資料--------------//
             this.ltFstRec.Text = accessTime.Rows[0][0].ToString(); // 初次記帳
             this.ltLstRec.Text = accessTime.Rows[accessTime.Rows.Count - 1][0].ToString(); // 最後記帳
-            this.ltTotalAcc.Text = accCount.ToString(); // 記帳數量
-            this.ltUserNum.Text = idCount.ToString(); // 會員數
+            this.ltTotalAcc.Text = $"共 {accCount} 筆"; // 記帳數量
+            this.ltUserNum.Text = $"共 {idCount} 人"; // 會員數
         }
 
         #region 參數獲得

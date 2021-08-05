@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _7302AccountingNote
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class LoginPage : System.Web.UI.Page
     {
         /// <summary> 檢查是否登入 </summary>
         /// <param name="sender"></param>
@@ -17,12 +17,12 @@ namespace _7302AccountingNote
         {
             if (this.Session["UserLoginInfo"] != null)
             {
-                this.plcLogin.Visible = false;
+                //this.plcLogin.Visible = false;
                 Response.Redirect("/SystemAdmin/UserInfo/UserInfo.aspx"); // 如果已經登入過了，導頁到 UserInfo
             }
             else
             {
-                this.plcLogin.Visible = true;
+                //this.plcLogin.Visible = true;
             }
         }
 

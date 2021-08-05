@@ -52,7 +52,7 @@
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
 
-                <uc1:Pager runat="server" id="Pager" PageSize="10" Url="/SystemAdmin/AccountingRecord/AccountingList.aspx" />
+                <uc1:Pager runat="server" id="Pager" PageSize="5" Url="/SystemAdmin/AccountingRecord/AccountingList.aspx" />
 
                 <asp:PlaceHolder ID="plcNoData" runat="server" Visible="false">
                     <p style="color: red; background-color: cornflowerblue">
