@@ -11,6 +11,7 @@ namespace AccountingNote.DBSource
 {
     public class DBHelper
     {
+        #region 連接字串/ 找DataTable / 找DataRow
         /// <summary> 連接字串 </summary>
         /// <returns></returns>
         public static string GetConnectionString()
@@ -19,7 +20,7 @@ namespace AccountingNote.DBSource
             return val;
         }
 
-        /// <summary> 讀取清單的Method，抽到共用方法中 </summary>
+        /// <summary> 抓取流水帳的DataTable </summary>
         /// <param name="connStr"></param>
         /// <param name="dbCommand"></param>
         /// <param name="list"></param>
@@ -43,7 +44,7 @@ namespace AccountingNote.DBSource
             }
         }
 
-        /// <summary> AccountingManager的 </summary>
+        /// <summary> 抓取流水帳的DataRow </summary>
         /// <param name="connStr"></param>
         /// <param name="dbCommand"></param>
         /// <param name="list"></param>
@@ -71,6 +72,27 @@ namespace AccountingNote.DBSource
                 }
             }
         }
+        #endregion
+
+        #region 流水帳與DB相關部分
+        /// <summary> CreateAccounting 的重構 </summary>
+        /// <param name="connStr"></param>
+        /// <param name="dbCommand"></param>
+        /// <param name="paramList"></param>
+        public static void CreatData(string connStr, string dbCommand, List<SqlParameter> paramList)
+        {
+            // connect db & execute
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+                {
+                    comm.Parameters.AddRange(paramList.ToArray());
+
+                    conn.Open();
+                    comm.ExecuteNonQuery();
+                }
+            }
+        }
 
         /// <summary> UpdateAccounting 與 DeleteAccounting 的重構 </summary>
         /// <param name="connectionString"></param>
@@ -92,24 +114,6 @@ namespace AccountingNote.DBSource
                 }
             }
         }
-
-        /// <summary> CreateAccounting 的重構 </summary>
-        /// <param name="connStr"></param>
-        /// <param name="dbCommand"></param>
-        /// <param name="paramList"></param>
-        public static void CreatData(string connStr, string dbCommand, List<SqlParameter> paramList)
-        {
-            // connect db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                {
-                    comm.Parameters.AddRange(paramList.ToArray());
-
-                    conn.Open();
-                    comm.ExecuteNonQuery();
-                }
-            }
-        }
+        #endregion
     }
 }

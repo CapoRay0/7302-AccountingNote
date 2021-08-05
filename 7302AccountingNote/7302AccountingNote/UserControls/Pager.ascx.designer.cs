@@ -7,65 +7,83 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace _7302AccountingNote.SystemAdmin.AccountingRecord
+namespace _7302AccountingNote.UserControls
 {
 
 
-    public partial class AccountingList
+    public partial class Pager
     {
 
         /// <summary>
-        /// btnCreate 控制項。
+        /// aLinkFirst 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkFirst;
 
         /// <summary>
-        /// Label1 控制項。
+        /// aLink1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink1;
 
         /// <summary>
-        /// TotalAccount 控制項。
+        /// aLink2 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TotalAccount;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink2;
 
         /// <summary>
-        /// gvAccountingList 控制項。
+        /// ltlCurrentPage 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAccountingList;
+        protected global::System.Web.UI.WebControls.Literal ltlCurrentPage;
 
         /// <summary>
-        /// Pager 控制項。
+        /// aLink4 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::_7302AccountingNote.UserControls.Pager Pager;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink4;
 
         /// <summary>
-        /// plcNoData 控制項。
+        /// aLink5 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plcNoData;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink5;
+
+        /// <summary>
+        /// aLinkLast 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkLast;
+
+        /// <summary>
+        /// ltpager 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltpager;
     }
 }

@@ -10,6 +10,7 @@ namespace AccountingNote.DBSource
 {
     public class AccountingManager
     {
+        #region 流水帳查找
         /// <summary> 查詢流水帳清單 </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
@@ -74,6 +75,9 @@ namespace AccountingNote.DBSource
                 return null;
             }
         }
+        #endregion
+
+        #region 流水帳變更(增刪修)
 
         /// <summary> 建立流水帳 </summary>
         /// <param name="userID"></param>
@@ -209,5 +213,6 @@ namespace AccountingNote.DBSource
                 Logger.WriteLog(ex);
             }
         }
+        #endregion
     }
 }

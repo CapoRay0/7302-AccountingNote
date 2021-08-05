@@ -11,8 +11,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 {
     public partial class UserCreate : System.Web.UI.Page
     {
+        /// <summary> 登入檢查 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            //---Session存不存在，如果尚未登入，導至登入頁----
+
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -27,8 +32,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 Response.Redirect("/Login.aspx");
                 return;
             }
+
+            //---Session存不存在，如果尚未登入，導至登入頁end----
         }
 
+        /// <summary> 驗證新增使用者(錯誤提示) </summary>
+        /// <param name="errorMsgList"></param>
+        /// <returns></returns>
         private bool CheckInput(out List<string> errorMsgList)
         {
             List<string> msgList = new List<string>();
@@ -104,7 +114,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 errorMsgList = msgList;
                 return false;
             }
-               
+
 
             // 姓名 必填
             if (string.IsNullOrWhiteSpace(this.txtName.Text))
@@ -154,6 +164,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return false;
         }
 
+        /// <summary> 新增使用者 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             List<string> msgList = new List<string>();
@@ -183,11 +196,11 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             {
                 newMember = 0;
             }
-            else 
+            else
             {
                 newMember = 1;
             }
-            
+
             UserInfoManager.CreateNewUser(newGUID, newAccount, newPWD, newName, newEmail, newMember);
 
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");

@@ -11,6 +11,10 @@ namespace AccountingNote.DBSource
 {
     public class UserInfoManager
     {
+        #region 帳務查找
+        /// <summary> 以帳號名查到單筆帳號資料 </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         public static DataRow GetUserInfoByAccount(string account)
         {
             string connectionString = DBHelper.GetConnectionString();
@@ -40,6 +44,8 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 查找全部帳號資料 </summary>
+        /// <returns></returns>
         public static DataTable GetUserInfoForUserList()
         {
             string connectionString = DBHelper.GetConnectionString();
@@ -67,6 +73,9 @@ namespace AccountingNote.DBSource
             }
         }
 
+        /// <summary> 以ID查到單筆帳號資料 </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static DataRow GetUserListForUserDetail(string userID)
         {
             string connStr = DBHelper.GetConnectionString();
@@ -95,7 +104,9 @@ namespace AccountingNote.DBSource
                 return null;
             }
         }
+        #endregion
 
+        #region 帳務變更(增刪修)
         /// <summary> 建立使用者 </summary>
         /// <param name="newGUID"></param>
         /// <param name="newAccount"></param>
@@ -208,7 +219,9 @@ namespace AccountingNote.DBSource
                 Logger.WriteLog(ex);
             }
         }
+        #endregion
 
+        #region 使用者驗證
         /// <summary> 原密碼檢查 </summary>
         /// <param name="InpPwd"></param>
         /// <param name="uid"></param>
@@ -293,8 +306,8 @@ namespace AccountingNote.DBSource
             {
                 var dr = DBHelper.ReadDataRow(connStr, dbCommand, paramList);
 
-               if (dr==null)
-                return true;
+                if (dr == null)
+                    return true;
             }
             catch (Exception ex)
             {
@@ -303,6 +316,6 @@ namespace AccountingNote.DBSource
             }
             return false;
         }
-
+        #endregion
     }
 }

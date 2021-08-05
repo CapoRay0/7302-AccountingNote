@@ -11,8 +11,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 {
     public partial class UserPassword : System.Web.UI.Page
     {
+        /// <summary> 登入檢查 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            //---Session存不存在，如果尚未登入，導至登入頁----
+
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -27,7 +32,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 Response.Redirect("/Login.aspx");
                 return;
             }
-
+            //---Session存不存在，如果尚未登入，導至登入頁end----
 
             if (!this.IsPostBack)
             {
@@ -57,6 +62,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 
         }
 
+        /// <summary> 儲存修改密碼、返回登入頁面 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             //如果輸入有誤就跳出
@@ -84,6 +92,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             Response.Redirect("/Login.aspx");
         }
 
+        /// <summary> 驗證密碼修改(錯誤提示) </summary>
+        /// <param name="errorMsgList"></param>
+        /// <returns></returns>
         private bool CheckInput(out List<string> errorMsgList)
         {
             List<string> msgList = new List<string>();

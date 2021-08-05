@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemAdmin/SystemAdmin.Master" AutoEventWireup="true" CodeBehind="AccountingList.aspx.cs" Inherits="_7302AccountingNote.SystemAdmin.AccountingRecord.AccountingList" %>
 
+<%@ Register Src="~/UserControls/Pager.ascx" TagPrefix="uc1" TagName="Pager" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -18,13 +21,11 @@
                 <asp:GridView ID="gvAccountingList" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvAccountingList_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <%--<asp:BoundField HeaderText="In/Out" DataField="ActType" />--%>
 
                         <asp:BoundField HeaderText="建立日期" DataField="CreateDate" DataFormatString="{0:yyyy-MM-dd}" />
 
                         <asp:TemplateField HeaderText="收 / 支">
                             <ItemTemplate>
-                                <%--<%# ((int)Eval("ActType") == 0) ? "支出" : "收入" %>--%>
 
                                 <asp:Label ID="lblActType" runat="server"></asp:Label>
                             </ItemTemplate>
@@ -51,9 +52,7 @@
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
 
-                <%--<asp:Literal ID="ltpager" runat="server"></asp:Literal>--%>
-
-                <%--<uc1:ucpager runat="server" ID="ucPager" PageSize="10" CurrentPage="1" TotalSize="10" Url="AccountingList.aspx" />--%>
+                <uc1:Pager runat="server" id="Pager" PageSize="10" Url="/SystemAdmin/AccountingRecord/AccountingList.aspx" />
 
                 <asp:PlaceHolder ID="plcNoData" runat="server" Visible="false">
                     <p style="color: red; background-color: cornflowerblue">

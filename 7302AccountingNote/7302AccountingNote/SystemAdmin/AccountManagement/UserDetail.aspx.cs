@@ -13,8 +13,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
 {
     public partial class UserDetail : System.Web.UI.Page
     {
+        /// <summary> 登入檢查 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            //---Session存不存在，如果尚未登入，導至登入頁----
+
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -29,11 +34,12 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 Response.Redirect("/Login.aspx");
                 return;
             }
+            //---Session存不存在，如果尚未登入，導至登入頁end----
 
             if (!this.IsPostBack)
             {
                 // Check is create mode or edit mode
-                if (this.Request.QueryString["UID"] == null) //參數ID沒有帶到本頁，ID=null >> 新增模式
+                if (this.Request.QueryString["UID"] == null)
                 {
                     this.btnDelete.Visible = false;
                 }
@@ -58,7 +64,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                         this.txtEmail.Text = drAccounting["Email"].ToString();
                         string Level = drAccounting["UserLevel"].ToString();
                         this.ltCreateDate.Text = drAccounting["CreateDate"].ToString();
-                        
+
                         switch (Level)
                         {
                             case "0":
@@ -68,18 +74,34 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                                 this.ltUserLevel.Text = "一般會員";
                                 break;
                         }
-                           
+
                     }
                 }
             }
         }
 
+        /// <summary> 儲存修改使用者 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             SaveUploadedInfo();
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
         }
 
+        /// <summary> 修改使用者並導頁至修改密碼 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnchangePWD_Click(object sender, EventArgs e)
+        {
+            SaveUploadedInfo();
+            string uidText = this.Request.QueryString["UID"];
+            Response.Redirect($"/SystemAdmin/AccountManagement/UserPassword.aspx?UID={uidText}");
+        }
+
+        /// <summary>
+        /// 修改使用者方法
+        /// </summary>
         private void SaveUploadedInfo()
         {
             //如果輸入有誤就跳出
@@ -101,12 +123,14 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             string name = this.txtName.Text;
             string email = this.txtEmail.Text;
 
-            // Check is create mode or edit mode
             string uidText = this.Request.QueryString["UID"];
             UserInfoManager.UpdateUserInfo(name, email, uidText);
 
         }
 
+        /// <summary> 驗證修改使用者(錯誤提示) </summary>
+        /// <param name="errorMsgList"></param>
+        /// <returns></returns>
         private bool CheckInput(out List<string> errorMsgList)
         {
             List<string> msgList = new List<string>();
@@ -143,19 +167,14 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return false;
         }
 
+        /// <summary> 刪除使用者 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string uidText = this.Request.QueryString["UID"];
             UserInfoManager.DeleteUser(uidText);
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
         }
-
-        protected void btnchangePWD_Click(object sender, EventArgs e)
-        {
-            SaveUploadedInfo();
-            string uidText = this.Request.QueryString["UID"];
-            Response.Redirect($"/SystemAdmin/AccountManagement/UserPassword.aspx?UID={uidText}");
-        }
-
     }
 }

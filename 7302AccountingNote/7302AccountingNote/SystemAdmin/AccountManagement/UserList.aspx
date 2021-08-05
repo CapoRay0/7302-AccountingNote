@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemAdmin/SystemAdmin.Master" AutoEventWireup="true" CodeBehind="UserList.aspx.cs" Inherits="_7302AccountingNote.SystemAdmin.AccountManagement.UserList" %>
 
+<%@ Register Src="~/UserControls/Pager.ascx" TagPrefix="uc1" TagName="Pager" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,9 +46,8 @@
 
                 </asp:GridView>
 
-                <%--<asp:Literal ID="ltpager" runat="server"></asp:Literal>--%>
+                <uc1:Pager runat="server" ID="Pager" PageSize="5" Url="/SystemAdmin/AccountManagement/UserList.aspx" />
 
-                <%--<uc1:ucpager runat="server" ID="ucPager" PageSize="10" CurrentPage="1" TotalSize="10" Url="AccountingList.aspx" />--%>
                 <asp:PlaceHolder ID="plcNoUserData" runat="server" Visible="false">
                     <p style="color: red; background-color: cornflowerblue">
                         無會員資料

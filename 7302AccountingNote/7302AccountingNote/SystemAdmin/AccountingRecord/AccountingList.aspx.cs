@@ -13,8 +13,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 {
     public partial class AccountingList : System.Web.UI.Page
     {
+        /// <summary> 登入檢查 / 金額小計 / 資料繫結 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            //---Session存不存在，如果尚未登入，導至登入頁----
+
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -29,7 +34,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 Response.Redirect("/Login.aspx");
                 return;
             }
-
+            //---Session存不存在，如果尚未登入，導至登入頁end----
             // read accounting data
             var dt = AccountingManager.GetAccountingList(CurrentUser.ID);
 
@@ -50,39 +55,85 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 
             if (dt.Rows.Count > 0) // 如果DB有資料
             {
-                this.gvAccountingList.DataSource = dt; // 資料繫結
+                var dtPaged = this.GetPagedDataTable(dt);
+
+                this.Pager.TotalSize = dt.Rows.Count;
+                this.Pager.Bind();
+
+                this.gvAccountingList.DataSource = dtPaged; // 資料繫結
                 this.gvAccountingList.DataBind();
             }
             else
             {
                 this.gvAccountingList.Visible = false;
                 this.plcNoData.Visible = true;
+                this.TotalAccount.Visible = false;
+                this.Pager.Visible = false;
+
             }
 
         }
-        //int totalPages = this.GetTotalPages(dt); // 取得總頁數
-        //var dtPaged = this.GetPagedDataTable(dt);
 
-        //this.ucPager.TotalSize = dt.Rows.Count; //總頁數給dt筆數就好
-        //this.ucPager.Bind(); // 可以利用 Method 來跟外界(這裡)溝通
-        //// 0802--------------------------------------------------------
-        //var pages = (dt.Rows.Count / 10); // 計算共幾筆、共幾頁
-        //if (dt.Rows.Count % 10 > 0)
-        //    pages += 1;
+        /// <summary> 取得頁數 </summary>
+        /// <returns></returns>
+        private int GetCurrentPage()
+        {
+            string pageText = Request.QueryString["Page"];
 
-        //this.ltpager.Text = $"共 {dt.Rows.Count} 筆，共 {pages} 頁，目前在第 {this.GetCurrentPage()} 頁<br/>";
-        ////--------------------------------------------------------
+            if (string.IsNullOrWhiteSpace(pageText)) // 空的時候，給第一頁
+                return 1;
 
-        //for (var i = 1; i <= totalPages; i++) // 總頁數
-        //{
-        //    this.ltpager.Text += $"<a href='AccountingList.aspx?page={i}'>{i}</a>&nbsp";
-        //}
+            int intPage;
+            if (!int.TryParse(pageText, out intPage)) // (錯誤) 數字轉換失敗，給第一頁
+                return 1;
 
+            if (intPage <= 0) // (錯誤) 0或以下，也給第一頁
+                return 1;
+
+            return intPage;
+        }
+
+        /// <summary> 分頁結構 </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DataTable GetPagedDataTable(DataTable dt)
+        {
+            DataTable dtPaged = dt.Clone(); //只拿結構
+            //dt.Copy(); // 除了結構還拿資料，但0筆的話會出錯
+
+            int pageSize = this.Pager.PageSize;
+            int startIndex = (this.GetCurrentPage() - 1) * pageSize;
+            int endIndex = this.GetCurrentPage() * pageSize;
+
+            if (endIndex > dt.Rows.Count)
+                endIndex = dt.Rows.Count;
+
+            for (var i = startIndex; i < endIndex; i++)
+            {
+                DataRow dr = dt.Rows[i];
+                var drNew = dtPaged.NewRow();
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    drNew[dc.ColumnName] = dr[dc];
+                }
+
+                dtPaged.Rows.Add(drNew);
+            }
+            return dtPaged;
+        }
+
+        /// <summary> 新增流水帳 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("/SystemAdmin/AccountingRecord/AccountingDetail.aspx");
         }
 
+        /// <summary> ActType(支出 / 收入) </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvAccountingList_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             var row = e.Row;

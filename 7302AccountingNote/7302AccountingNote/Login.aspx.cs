@@ -10,12 +10,15 @@ namespace _7302AccountingNote
 {
     public partial class Login : System.Web.UI.Page
     {
+        /// <summary> 檢查是否登入 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Session["UserLoginInfo"] != null)
             {
                 this.plcLogin.Visible = false;
-                Response.Redirect("/SystemAdmin/UserInfo/UserInfo.aspx"); // 已經登入過了，導頁到 UserInfo
+                Response.Redirect("/SystemAdmin/UserInfo/UserInfo.aspx"); // 如果已經登入過了，導頁到 UserInfo
             }
             else
             {
@@ -23,6 +26,9 @@ namespace _7302AccountingNote
             }
         }
 
+        /// <summary> 登入動作 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string inp_Account = this.txtAccount.Text; // inp 為 input

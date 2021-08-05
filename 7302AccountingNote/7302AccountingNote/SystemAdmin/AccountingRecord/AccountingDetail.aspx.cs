@@ -11,8 +11,13 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
 {
     public partial class AccountingDetail : System.Web.UI.Page
     {
+        /// <summary> 登入檢查 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            //---Session存不存在，如果尚未登入，導至登入頁----
+
             if (!AuthManager.IsLogined())
             {
                 Response.Redirect("/Login.aspx");
@@ -27,6 +32,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 Response.Redirect("/Login.aspx");
                 return;
             }
+            //---Session存不存在，如果尚未登入，導至登入頁end----
 
             if (!this.IsPostBack)
             {
@@ -69,6 +75,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
             }
         }
 
+        /// <summary> 新增 / 修改一筆流水帳 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
             List<string> msgList = new List<string>();
@@ -116,6 +125,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
             Response.Redirect("/SystemAdmin/AccountingRecord/AccountingList.aspx");
         }
 
+        /// <summary> 驗證金額(錯誤提示) </summary>
+        /// <param name="errorMsgList"></param>
+        /// <returns></returns>
         private bool CheckInput(out List<string> errorMsgList)
         {
             List<string> msgList = new List<string>();
@@ -154,6 +166,9 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 return false;
         }
 
+        /// <summary> 刪除一筆流水帳 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             string idText = this.Request.QueryString["ID"];

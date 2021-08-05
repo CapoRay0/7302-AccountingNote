@@ -11,6 +11,7 @@ namespace AccountingNote.Auth
 {
     public class AuthManager
     {
+        #region 登入驗證
         /// <summary> 檢查目前是否登入 </summary>
         /// <returns></returns>
         public static bool IsLogined()
@@ -46,14 +47,17 @@ namespace AccountingNote.Auth
             model.Email = dr["Email"].ToString();
             model.UserLevel = dr["UserLevel"].ToString();
             //DateTime? CreatDateTemp = dr["CreateDate"] as DateTime?;
-            if(dr["CreateDate"] != null)
+            if (dr["CreateDate"] != null)
             {
                 model.CreateDate = Convert.ToDateTime(dr["CreateDate"]);
             }
 
             return model;
         }
+        
+        #endregion
 
+        #region 登入/登出
         /// <summary> 登入 </summary>
         /// <param name="account"></param>
         /// <param name="pwd"></param>
@@ -95,10 +99,11 @@ namespace AccountingNote.Auth
         }
 
         /// <summary> 登出 </summary>
+        /// <returns></returns>
         public static void Logout()
         {
             HttpContext.Current.Session["UserLoginInfo"] = null;
         }
-
+        #endregion
     }
 }

@@ -12,6 +12,9 @@ namespace _7302AccountingNote
 {
     public partial class Default : System.Web.UI.Page
     {
+        /// <summary> 取得顯示資料的變數 / 顯示資料 </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             //---------取得顯示資料的變數---------//
@@ -21,17 +24,18 @@ namespace _7302AccountingNote
 
             //-------------顯示資料--------------//
             this.ltFstRec.Text = accessTime.Rows[0][0].ToString(); // 初次記帳
-            this.ltLstRec.Text = accessTime.Rows[accessTime.Rows.Count-1][0].ToString(); // 最後記帳
+            this.ltLstRec.Text = accessTime.Rows[accessTime.Rows.Count - 1][0].ToString(); // 最後記帳
             this.ltTotalAcc.Text = accCount.ToString(); // 記帳數量
             this.ltUserNum.Text = idCount.ToString(); // 會員數
         }
 
+        #region 參數獲得
         /// <summary> 取得時間 </summary>
         /// <returns></returns>
         public static DataTable GetTime()
         {
             string connectionString = DBHelper.GetConnectionString();
-            string dbCommandString = 
+            string dbCommandString =
                 $@" SELECT 
                     [CreateDate]
                 FROM [AccountingNote]
@@ -56,7 +60,7 @@ namespace _7302AccountingNote
         public static string GetTotalAcc()
         {
             string connectionString = DBHelper.GetConnectionString();
-            string dbCommandString = 
+            string dbCommandString =
                 $@" SELECT 
                         Count ([ID]) as Cnt
                     FROM [AccountingNote]
@@ -81,7 +85,7 @@ namespace _7302AccountingNote
         public static string GetUserCount()
         {
             string connectionString = DBHelper.GetConnectionString();
-            string dbCommandString = 
+            string dbCommandString =
                 $@" SELECT
                         Count ([ID]) 
                     FROM [UserInfo]
@@ -99,6 +103,7 @@ namespace _7302AccountingNote
                 return null;
             }
         }
+        #endregion
 
         /// <summary> 導至登入頁面 </summary>
         /// <param name="sender"></param>
