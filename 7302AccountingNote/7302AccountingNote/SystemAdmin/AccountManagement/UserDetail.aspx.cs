@@ -56,8 +56,19 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                         this.ltAccount.Text = drAccounting["Account"].ToString();
                         this.txtName.Text = drAccounting["Name"].ToString();
                         this.txtEmail.Text = drAccounting["Email"].ToString();
-                        this.ltUserLevel.Text = drAccounting["UserLevel"].ToString();
+                        string Level = drAccounting["UserLevel"].ToString();
                         this.ltCreateDate.Text = drAccounting["CreateDate"].ToString();
+                        
+                        switch (Level)
+                        {
+                            case "0":
+                                this.ltUserLevel.Text = "管理者";
+                                break;
+                            case "1":
+                                this.ltUserLevel.Text = "一般會員";
+                                break;
+                        }
+                           
                     }
                 }
             }
