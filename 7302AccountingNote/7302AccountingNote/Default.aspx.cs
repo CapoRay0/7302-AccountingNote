@@ -59,7 +59,7 @@ namespace _7302AccountingNote
             string dbCommandString = 
                 $@" SELECT 
                         Count ([ID]) as Cnt
-                    FROM [7302AccountingNote].[dbo].[AccountingNote]
+                    FROM [AccountingNote]
                 ";
             List<SqlParameter> list = new List<SqlParameter>();
             try
