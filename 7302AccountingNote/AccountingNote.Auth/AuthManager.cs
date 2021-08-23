@@ -40,6 +40,8 @@ namespace AccountingNote.Auth
                 return null;
             }
 
+            // 問題 : 使用UserInfoModel沒有很理解
+            
             UserInfoModel model = new UserInfoModel();
             model.ID = dr["ID"].ToString();
             model.Account = dr["Account"].ToString();
@@ -86,7 +88,7 @@ namespace AccountingNote.Auth
             if (string.Compare(dr["Account"].ToString(), account, true) == 0 &&
                 string.Compare(dr["PWD"].ToString(), pwd, false) == 0) // 因密碼要強制大小寫因此設定為false
             {
-                HttpContext.Current.Session["UserLoginInfo"] = dr["Account"].ToString(); // 正確!!，跳頁至 UserInfo.aspx
+                HttpContext.Current.Session["UserLoginInfo"] = dr["Account"].ToString(); // Session的變數名稱為UserLoginInfo ， 值為dr["Account"]   // 正確!!，跳頁至 UserInfo.aspx
                 errorMsg = string.Empty;
                 return true;
             }

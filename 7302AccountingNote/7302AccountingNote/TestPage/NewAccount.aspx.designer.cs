@@ -7,65 +7,65 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace _7302AccountingNote.SystemAdmin.AccountManagement
+namespace _7302AccountingNote.TestPage
 {
 
 
-    public partial class UserList
+    public partial class NewAccount
     {
 
         /// <summary>
-        /// btnCreate 控制項。
+        /// Label1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// ltlCurrentUserInfo 控制項。
+        /// txtNewAccount 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlCurrentUserInfo;
+        protected global::System.Web.UI.WebControls.TextBox txtNewAccount;
 
         /// <summary>
-        /// gvUserList 控制項。
+        /// txtNewPWD 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUserList;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPWD;
 
         /// <summary>
-        /// Pager 控制項。
+        /// txtEmail 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::_7302AccountingNote.UserControls.Pager Pager;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// plcNoUserData 控制項。
+        /// txtName 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plcNoUserData;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// ltmsg 控制項。
+        /// btnConfirm 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltmsg;
+        protected global::System.Web.UI.WebControls.Button btnConfirm;
     }
 }

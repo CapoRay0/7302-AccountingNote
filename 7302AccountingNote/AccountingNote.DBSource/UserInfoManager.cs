@@ -46,11 +46,12 @@ namespace AccountingNote.DBSource
 
         /// <summary> 查找全部帳號資料 </summary>
         /// <returns></returns>
-        public static DataTable GetUserInfoForUserList()
+        /// 
+        public static DataTable GetUserInfoForUserListAdmin()
         {
             string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
-                $@"SELECT [ID] as UID
+                $@"SELECT [ID]
                         , [Account]
                         , [Name]
                         , [Email]
@@ -61,7 +62,33 @@ namespace AccountingNote.DBSource
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
+            try
+            {
+                return DBHelper.ReadDataTable(connectionString, dbCommandString, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+        public static DataTable GetUserInfoForUserListNormal(Guid UserID)
+        {
+            string connectionString = DBHelper.GetConnectionString();
+            string dbCommandString =
+                $@"SELECT [ID]
+                        , [Account]
+                        , [Name]
+                        , [Email]
+                        , [UserLevel]
+                        , [CreateDate]
+                    FROM [UserInfo]
+                    WHERE UserLevel = 1
+                    AND ID = @ID
+                ";
 
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@ID", UserID));
             try
             {
                 return DBHelper.ReadDataTable(connectionString, dbCommandString, list);
@@ -114,7 +141,7 @@ namespace AccountingNote.DBSource
         /// <param name="newName"></param>
         /// <param name="newEmail"></param>
         /// <param name="newMember"></param>
-        public static void CreateNewUser(string newGUID, string newAccount, string newPWD, string newName, string newEmail, int newMember)
+        public static void CreateNewUser(Guid newGUID, string newAccount, string newPWD, string newName, string newEmail)
         {
 
             string connStr = DBHelper.GetConnectionString();
@@ -125,8 +152,7 @@ namespace AccountingNote.DBSource
                        ,[Account]
                        ,[PWD]
                        ,[Name]
-                       ,[Email]
-                       ,[UserLevel]
+                       ,[Email]      
                        ,[CreateDate]
                     )
                     VALUES
@@ -135,8 +161,7 @@ namespace AccountingNote.DBSource
                        ,@Account
                        ,@PWD
                        ,@Name
-                       ,@Email
-                       ,@UserLevel
+                       ,@Email                    
                        ,@createDate
                     )
                 ";
@@ -147,7 +172,7 @@ namespace AccountingNote.DBSource
             paramList.Add(new SqlParameter("@PWD", newPWD));
             paramList.Add(new SqlParameter("@Name", newName));
             paramList.Add(new SqlParameter("@Email", newEmail));
-            paramList.Add(new SqlParameter("@UserLevel", newMember));
+            //paramList.Add(new SqlParameter("@UserLevel", newMember));
             paramList.Add(new SqlParameter("@CreateDate", DateTime.Now));
 
             try
@@ -254,10 +279,77 @@ namespace AccountingNote.DBSource
             }
         }
 
+        public static bool CheckInfoIsCorrect(string account, string Name, string Email, int UserLevel)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@" SELECT 
+                    [Account]
+                    ,[Name]
+                    ,[Email]
+                    ,[UserLevel]
+                    FROM [UserInfo]
+                    WHERE Account = @NewAccount ";
+
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@NewAccount", account));
+
+            try
+            {
+                var dr = DBHelper.ReadDataRow(connStr, dbCommand, paramList);
+
+                string OrigAccount = dr[0].ToString();
+                string OrigName = dr[1].ToString();
+                string OrigEmail = dr[2].ToString();
+                int OrigLevel = Convert.ToInt32(dr[3]);
+
+                if (account == OrigAccount && Name == OrigName
+                    && Email == OrigEmail && UserLevel == OrigLevel)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
+            }
+        }
+
         /// <summary> 修改密碼 </summary>
         /// <param name="pwd"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
+        /// 
+        public static bool ChangePWD(string pwd, string acc)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@" UPDATE [UserInfo]
+                    SET [PWD] = @pwd                     
+                    WHERE Account = @acc ";
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@pwd", pwd));
+            paramList.Add(new SqlParameter("@acc", acc));
+
+            try
+            {
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, paramList);
+
+                if (effectRows == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
+            }
+
+        }
         public static bool UpdatePwd(string pwd, string uid)
         {
             string connStr = DBHelper.GetConnectionString();
@@ -291,31 +383,57 @@ namespace AccountingNote.DBSource
         /// <summary> 檢查GUID是否重複 </summary>
         /// <param name="InpGUID"></param>
         /// <returns></returns>
-        public static bool CheckGUIDIsCorrect(string InpGUID)
+        //public static bool CheckGUIDIsCorrect(Guid newGUID)
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" SELECT [ID]
+        //            FROM [UserInfo]
+        //            WHERE ID = @InpGUID
+        //           ";
+
+        //    List<SqlParameter> paramList = new List<SqlParameter>();
+        //    paramList.Add(new SqlParameter("@InpGUID", newGUID));
+        //    try
+        //    {
+        //        var dr = DBHelper.ReadDataRow(connStr, dbCommand, paramList);
+
+        //        if (dr == null)
+        //            return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return false;
+        //    }
+        //    return false;
+        //}
+        #endregion
+
+        public static int CheckAccountUserLevel(Guid ID)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
-                $@" SELECT [ID]
+                $@" SELECT [UserLevel]
                     FROM [UserInfo]
-                    WHERE ID = @InpGUID
+                    WHERE ID = @ID
                    ";
-
+            
             List<SqlParameter> paramList = new List<SqlParameter>();
-            paramList.Add(new SqlParameter("@InpGUID", InpGUID));
+            paramList.Add(new SqlParameter("@ID", ID));
+
             try
             {
                 var dr = DBHelper.ReadDataRow(connStr, dbCommand, paramList);
-
-                if (dr == null)
-                    return true;
+                string UserLevelText = dr[0].ToString();
+                int UserLevel = Convert.ToInt32(UserLevelText);
+                return UserLevel;
             }
             catch (Exception ex)
             {
                 Logger.WriteLog(ex);
-                return false;
+                return 2;  // 還不確定怎麼寫
             }
-            return false;
         }
-        #endregion
     }
 }

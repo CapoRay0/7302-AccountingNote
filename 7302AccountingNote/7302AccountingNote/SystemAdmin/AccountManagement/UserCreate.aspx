@@ -11,10 +11,10 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblGUID" runat="server" Text="辨識碼"></asp:Label>
+                <%--<asp:Label ID="lblGUID" runat="server" Text="辨識碼"></asp:Label>
                 <asp:TextBox ID="txtGuid" runat="server"></asp:TextBox>
 
-                <a href="https://www.guidgenerator.com/online-guid-generator.aspx" target="_blank">請點我創建GUID辨識碼</a><br />
+                <a href="https://www.guidgenerator.com/online-guid-generator.aspx" target="_blank">請點我創建GUID辨識碼</a><br />--%>
 
 
                 <asp:Label ID="lblAccount" runat="server" Text="帳號"></asp:Label>
@@ -33,13 +33,13 @@
                 <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox><br />
 
-                <asp:Label ID="lblUserLevel" runat="server" Text="等級"></asp:Label>
+               <%-- <asp:Label ID="lblUserLevel" runat="server" Text="等級"></asp:Label>--%>
 
-                <asp:Panel runat="server">
+                <%--<asp:Panel runat="server">
                     <asp:RadioButton ID="RadbtnnewManager" runat="server" Text="管理者" GroupName="newMember" />
                     <asp:RadioButton ID="RadbtnnewUser" runat="server" Text="一般會員" GroupName="newMember" />
                 </asp:Panel>
-                <br />
+                <br />--%>
 
                 <asp:Button ID="btnSave" runat="server" Text="儲存" OnClick="btnSave_Click" />
                 &nbsp;&nbsp;

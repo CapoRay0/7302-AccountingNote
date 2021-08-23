@@ -42,6 +42,36 @@ namespace AccountingNote.DBSource
             }
         }
 
+        public static DataTable ShowTotalAmount(string userID, int actType)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@" SELECT
+                        [ID],
+                        [CreateDate],
+                        [ActType],
+                        [Amount],
+                        [Caption]
+                    FROM [AccountingNote]
+                    WHERE UserID = @userID
+                    AND ActType = @actType
+                ";
+
+            // 用List把Parameter裝起來，再裝到共用參數
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@userID", userID));
+            list.Add(new SqlParameter("@actType", actType));
+            try // 讓錯誤可以被凸顯，因此 TryCatch 不應該重構進 DBHelper
+            {
+                return DBHelper.ReadDataTable(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
         /// <summary> 查詢流水帳 </summary>
         /// <param name="id"></param>
         /// <param name="userID"></param>

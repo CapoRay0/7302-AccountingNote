@@ -1,4 +1,5 @@
 ﻿using AccountingNote.Auth;
+using AccountingNote.DBSource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,22 @@ namespace _7302AccountingNote.SystemAdmin.UserInfo
                 this.ltName.Text = CurrentUser.Name;
                 this.ltEmail.Text = CurrentUser.Email;
 
+
+                // 傳入當前登入帳號的Guid取得帳號的使用者等級
+                this.ItUserLevel.Text = CurrentUser.ID;
+                Guid UserGuid = Guid.Parse(this.ItUserLevel.Text);
+
+                int UserLevel = UserInfoManager.CheckAccountUserLevel(UserGuid);
+                if (UserLevel == 0)
+                {
+                    this.ItUserLevel.Text = "系統管理者";
+                }
+                else
+                {
+                    this.ItUserLevel.Text = "一般使用者";
+                }
+
+                HttpContext.Current.Session["UserLoginGuid"] = CurrentUser.ID;
             }
         }
 

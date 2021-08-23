@@ -7,101 +7,101 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace _7302AccountingNote.SystemAdmin.AccountingRecord
+namespace _7302AccountingNote.TestPage
 {
 
 
-    public partial class AccountingList
+    public partial class ForgotPWD
     {
 
         /// <summary>
-        /// btnCreate 控制項。
+        /// txtOrigAccount 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
+        protected global::System.Web.UI.WebControls.TextBox txtOrigAccount;
 
         /// <summary>
-        /// Label1 控制項。
+        /// txtEmailCheck 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailCheck;
 
         /// <summary>
-        /// TotalAccount 控制項。
+        /// txtNameCheck 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TotalAccount;
+        protected global::System.Web.UI.WebControls.TextBox txtNameCheck;
 
         /// <summary>
-        /// btnAllSpend 控制項。
+        /// DropDownList1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAllSpend;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
-        /// btnAllReceive 控制項。
+        /// Manager 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAllReceive;
+        protected global::System.Web.UI.WebControls.ListItem Manager;
 
         /// <summary>
-        /// lblTotalAmount 控制項。
+        /// Normal 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalAmount;
+        protected global::System.Web.UI.WebControls.ListItem Normal;
 
         /// <summary>
-        /// gvAccountingList 控制項。
+        /// txtNewPWD 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAccountingList;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPWD;
 
         /// <summary>
-        /// Pager 控制項。
+        /// NewPWDConfirm 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::_7302AccountingNote.UserControls.Pager Pager;
+        protected global::System.Web.UI.WebControls.TextBox NewPWDConfirm;
 
         /// <summary>
-        /// plcNoData 控制項。
+        /// btnConfirm 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plcNoData;
+        protected global::System.Web.UI.WebControls.Button btnConfirm;
 
         /// <summary>
-        /// ltmsg 控制項。
+        /// WrongShow 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltmsg;
+        protected global::System.Web.UI.WebControls.Literal WrongShow;
     }
 }

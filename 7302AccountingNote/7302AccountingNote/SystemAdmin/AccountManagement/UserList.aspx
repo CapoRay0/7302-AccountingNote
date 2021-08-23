@@ -9,12 +9,13 @@
     <table>
         <tr>
             <td colspan="2">
-                <h3>會員管理</h3>
+                <h3>會員資料管理</h3>
             </td>
         </tr>
         <tr>
             <td>
                 <asp:Button ID="btnCreate" runat="server" Text="Add" OnClick="btnCreate_Click" />
+                <asp:Literal ID="ltlCurrentUserInfo" runat="server"></asp:Literal>
                 <asp:GridView ID="gvUserList" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
@@ -29,7 +30,7 @@
                         <asp:BoundField HeaderText="建立時間" DataField="CreateDate" />
                         <asp:TemplateField HeaderText="編輯">
                             <ItemTemplate>
-                                <a href="/SystemAdmin/AccountManagement/UserDetail.aspx?UID=<%# Eval("UID") %>">修改</a>
+                                <a href="/SystemAdmin/AccountManagement/UserDetail.aspx?UID=<%# Eval("ID") %>">修改</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

@@ -33,9 +33,14 @@
         </tr>
         <tr align="center">
             <td>
-                <br />
                 <asp:Button ID="btnLogin" runat="server" Text="登入" OnClick="btnLogin_Click" /><br />
-                <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+                <asp:Literal ID="ltlMsg" runat="server"></asp:Literal><br />
+                
+                新增測試項目<br />
+                <asp:Button ID="btnNewAccount" runat="server" Text="申請帳號" OnClick="btnNewAccount_Click" />
+                <asp:Button ID="btnNewPWD" runat="server" Text="忘記密碼"  OnClick="btnNewPWD_Click"/>
+                
+                
             </td>
         </tr>
         <%--</asp:PlaceHolder>--%>

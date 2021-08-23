@@ -44,28 +44,28 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             List<string> msgList = new List<string>();
 
             // 辨識碼 必填
-            if (string.IsNullOrWhiteSpace(this.txtGuid.Text))
-            {
-                msgList.Add("請輸入辨識碼");
-                errorMsgList = msgList;
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(this.txtGuid.Text))
+            //{
+            //    msgList.Add("請輸入辨識碼");
+            //    errorMsgList = msgList;
+            //    return false;
+            //}
 
             // 驗證是否為辨識碼 (透過長度)
-            if (this.txtGuid.Text.Length != 36)
-            {
-                msgList.Add("辨識碼不符合規範、請利用辨識碼產生器");
-                errorMsgList = msgList;
-                return false;
-            }
+            //if (this.txtGuid.Text.Length != 36)
+            //{
+            //    msgList.Add("辨識碼不符合規範、請利用辨識碼產生器");
+            //    errorMsgList = msgList;
+            //    return false;
+            //}
 
-            // 辨識碼 不能重複
-            if (!UserInfoManager.CheckGUIDIsCorrect(this.txtGuid.Text))
-            {
-                msgList.Add("辨識碼不能重複");
-                errorMsgList = msgList;
-                return false;
-            }
+            //辨識碼 不能重複
+            //if (!UserInfoManager.CheckGUIDIsCorrect(this.txtGuid.Text))
+            //{
+            //    msgList.Add("辨識碼不能重複");
+            //    errorMsgList = msgList;
+            //    return false;
+            //}
 
             // 帳號 必填
             if (string.IsNullOrWhiteSpace(this.txtAccount.Text))
@@ -150,12 +150,12 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             }
 
             // 會員等級 必填
-            if (!RadbtnnewManager.Checked && !RadbtnnewUser.Checked)
-            {
-                msgList.Add("請點選等級");
-                errorMsgList = msgList;
-                return false;
-            }
+            //if (!RadbtnnewManager.Checked && !RadbtnnewUser.Checked)
+            //{
+            //    msgList.Add("請點選等級");
+            //    errorMsgList = msgList;
+            //    return false;
+            //}
 
             errorMsgList = msgList;
 
@@ -185,24 +185,28 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
                 return;
             }
 
+            var id = Guid.NewGuid();
+
             // Input txt
-            string newGUID = this.txtGuid.Text;
+            //string newGUID = this.txtGuid.Text;
             string newAccount = this.txtAccount.Text;
             string newPWD = this.txtPWD.Text;
             string newName = this.txtName.Text;
             string newEmail = this.txtEmail.Text;
-            int newMember;
+            //int newMember;
 
-            if (RadbtnnewManager.Checked)
-            {
-                newMember = 0;
-            }
-            else
-            {
-                newMember = 1;
-            }
+            //if (RadbtnnewManager.Checked)
+            //{
+            //    newMember = 0;
+            //}
+            //else
+            //{
+            //    newMember = 1;
+            //}
 
-            UserInfoManager.CreateNewUser(newGUID, newAccount, newPWD, newName, newEmail, newMember);
+            UserInfoManager.CreateNewUser(id, newAccount, newPWD, newName, newEmail);
+
+
 
             Response.Redirect("/SystemAdmin/AccountManagement/UserList.aspx");
         }

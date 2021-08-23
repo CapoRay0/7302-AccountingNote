@@ -35,31 +35,57 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
             }
             //---Session存不存在，如果尚未登入，導至登入頁end----
 
-            //-------抓到user info，做資料連結-----
-            var userInfo = UserInfoManager.GetUserInfoForUserList();
-            this.gvUserList.DataSource = userInfo; // 資料繫結
-            this.gvUserList.DataBind();
-            //Response.Write(userInfo.Rows[0][0].ToString());//驗證
-            //-------抓到user info，做資料連結end------
+            
+            // 執行使用者權限管理
 
-            //-----------做頁數---------------
-            if (userInfo.Rows.Count > 0) // 如果DB有資料
+            UserInforPageCheck();
+        }
+
+        private void UserInforPageCheck()
+        {
+            var CurrentUser = AuthManager.GetCurrentUser();
+            string idText = CurrentUser.ID;
+            Guid UserGuidValue = Guid.Parse(idText);
+
+            int UserLevel = UserInfoManager.CheckAccountUserLevel(UserGuidValue);
+            if (UserLevel == 0)
             {
-                var dtPaged = this.GetPagedDataTable(userInfo);
+                var userInfo = UserInfoManager.GetUserInfoForUserListAdmin();
 
-                this.Pager.TotalSize = userInfo.Rows.Count;
-                this.Pager.Bind();
+                //-----------做頁數---------------
+                if (userInfo.Rows.Count > 0) // 如果DB有資料
+                {
+                    var dtPaged = this.GetPagedDataTable(userInfo);
 
-                this.gvUserList.DataSource = dtPaged; // 資料繫結
+                    this.Pager.TotalSize = userInfo.Rows.Count;
+                    this.Pager.Bind();
+
+                    this.gvUserList.DataSource = dtPaged; // 資料繫結
+                    this.gvUserList.DataBind();
+
+                    this.ltlCurrentUserInfo.Text = $"目前使用者為：{CurrentUser.Account} 權限等級為系統管理者。";
+                }
+                else
+                {
+                    this.gvUserList.Visible = false;
+                    this.plcNoUserData.Visible = true;
+                }
+                //-----------做頁數end---------------
+            }
+            else if(UserLevel == 1)
+            {
+                btnCreate.Visible = false;
+                Pager.Visible = false;
+                string UserGuidText = (string)HttpContext.Current.Session["UserLoginGuid"];
+                Guid UserGuid = Guid.Parse(UserGuidText);
+
+                DataTable userInfo = UserInfoManager.GetUserInfoForUserListNormal(UserGuid);
+
+                this.gvUserList.DataSource = userInfo; // 資料繫結
                 this.gvUserList.DataBind();
-            }
-            else
-            {
-                this.gvUserList.Visible = false;
-                this.plcNoUserData.Visible = true;
-            }
-            //-----------做頁數end---------------
 
+                this.ltlCurrentUserInfo.Text = $"目前使用者為：{CurrentUser.Account} 權限等級為一般使用者。";
+            }
         }
 
         /// <summary> 取得頁數 </summary>
@@ -130,7 +156,5 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
         {
             Response.Redirect("/SystemAdmin/AccountManagement/UserCreate.aspx");
         }
-
-
     }
 }

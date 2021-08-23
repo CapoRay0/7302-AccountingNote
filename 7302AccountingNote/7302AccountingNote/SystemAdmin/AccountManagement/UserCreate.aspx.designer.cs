@@ -15,24 +15,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
     {
 
         /// <summary>
-        /// lblGUID 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGUID;
-
-        /// <summary>
-        /// txtGuid 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGuid;
-
-        /// <summary>
         /// lblAccount 控制項。
         /// </summary>
         /// <remarks>
@@ -121,33 +103,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountManagement
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
-
-        /// <summary>
-        /// lblUserLevel 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserLevel;
-
-        /// <summary>
-        /// RadbtnnewManager 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadbtnnewManager;
-
-        /// <summary>
-        /// RadbtnnewUser 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadbtnnewUser;
 
         /// <summary>
         /// btnSave 控制項。

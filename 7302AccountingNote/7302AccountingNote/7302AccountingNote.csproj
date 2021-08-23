@@ -80,6 +80,8 @@
     <Content Include="SystemAdmin\AccountManagement\UserList.aspx" />
     <Content Include="SystemAdmin\AccountManagement\UserPassword.aspx" />
     <Content Include="SystemAdmin\UserInfo\UserInfo.aspx" />
+    <Content Include="TestPage\ForgotPWD.aspx" />
+    <Content Include="TestPage\NewAccount.aspx" />
     <Content Include="UserControls\Pager.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -164,6 +166,20 @@
     </Compile>
     <Compile Include="SystemAdmin\UserInfo\UserInfo.aspx.designer.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestPage\ForgotPWD.aspx.cs">
+      <DependentUpon>ForgotPWD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage\ForgotPWD.aspx.designer.cs">
+      <DependentUpon>ForgotPWD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestPage\NewAccount.aspx.cs">
+      <DependentUpon>NewAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage\NewAccount.aspx.designer.cs">
+      <DependentUpon>NewAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Pager.ascx.cs">
       <DependentUpon>Pager.ascx</DependentUpon>

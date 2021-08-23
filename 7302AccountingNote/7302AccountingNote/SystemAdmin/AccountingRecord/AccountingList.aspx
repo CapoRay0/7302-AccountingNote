@@ -16,7 +16,10 @@
             <td>
                 <asp:Button ID="btnCreate" runat="server" Text="Add" OnClick="btnCreate_Click" />
                 <asp:Label ID="Label1" runat="server" Text="用來  調距離的" Visible="false"></asp:Label>
-                <asp:TextBox ID="TotalAccount" runat="server" ReadOnly="true" Width="190px"></asp:TextBox>
+                <asp:TextBox ID="TotalAccount" runat="server" ReadOnly="true" Width="190px"></asp:TextBox><br />
+                <asp:Button ID="btnAllSpend" runat="server" Text="全部支出" OnClick="btnAllSpend_Click" />
+                <asp:Button ID="btnAllReceive" runat="server" Text="全部收入" OnClick="btnAllReceive_Click"/>
+                <asp:Label ID="lblTotalAmount" runat="server" Text=""></asp:Label>
 
                 <asp:GridView ID="gvAccountingList" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvAccountingList_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" />

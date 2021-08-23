@@ -41,5 +41,15 @@ namespace _7302AccountingNote
             }
             Response.Redirect("/SystemAdmin/UserInfo/UserInfo.aspx");
         }
+
+        protected void btnNewAccount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/TestPage/NewAccount.aspx");
+        }
+
+        protected void btnNewPWD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/TestPage/ForgotPWD.aspx");
+        }
     }
 }

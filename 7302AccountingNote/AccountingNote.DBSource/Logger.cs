@@ -15,7 +15,7 @@ namespace AccountingNote.DBSource
                     {ex.ToString()}
                 ";
 
-            string logPath = "D:\\Logs\\Log.log";
+            string logPath = "C:\\Logs\\Log.log";
             string folderPath = System.IO.Path.GetDirectoryName(logPath);
 
             if (!System.IO.Directory.Exists(folderPath))

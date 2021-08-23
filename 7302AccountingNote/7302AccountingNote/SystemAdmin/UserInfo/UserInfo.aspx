@@ -29,6 +29,12 @@
                                 <asp:Literal runat="server" ID="ltEmail"></asp:Literal>
                             </td>
                         </tr>
+                        <tr>
+                            <th>目前帳號等級</th>
+                            <td>
+                                <asp:Literal runat="server" ID="ItUserLevel"></asp:Literal>
+                            </td>
+                        </tr>
                     </table><br />
                     <asp:Button runat="server" ID="btnLogout" Text="登出" OnClick="btnLogout_Click"/>
                 </td>

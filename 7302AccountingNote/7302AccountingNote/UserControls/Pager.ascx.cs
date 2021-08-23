@@ -46,6 +46,8 @@ namespace _7302AccountingNote.UserControls
             int totalPage = this.TotalSize / this.PageSize;
             if (this.TotalSize % this.PageSize > 0)
                 totalPage += 1;
+            
+            // 問題點 : page進到Url的方法
 
             // aaa.aspx?page=1
             this.aLinkFirst.HRef = $"{this.Url}?page=1";

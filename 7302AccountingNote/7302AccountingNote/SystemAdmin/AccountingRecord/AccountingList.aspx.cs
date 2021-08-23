@@ -49,7 +49,7 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                 { answer += (int)dt.Rows[i][3]; }
             }
 
-            TotalAccount.Text = $"小計 {answer:C0} 元";  //驗證
+            TotalAccount.Text = $"目前收支小計為 {answer:C0} 元";  //驗證
 
             //-------小計end--------
 
@@ -97,8 +97,6 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
         /// <returns></returns>
         private DataTable GetPagedDataTable(DataTable dt)
         {
-
-
 
             DataTable dtPaged = dt.Clone(); //只拿結構
             //dt.Copy(); // 除了結構還拿資料，但0筆的話會出錯
@@ -176,6 +174,61 @@ namespace _7302AccountingNote.SystemAdmin.AccountingRecord
                         break;
                 }
             }
+        }
+        protected void btnAllSpend_Click(object sender, EventArgs e)
+        {
+            var CurrentUser = AuthManager.GetCurrentUser();
+            string account = HttpContext.Current.Session["UserLoginInfo"] as string;
+            int actType = 0;
+            var dt = AccountingManager.ShowTotalAmount(CurrentUser.ID, actType);
+
+            int answer = 0;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+               if((int)dt.Rows[i][2] == 0)
+               answer += (int)dt.Rows[i][3];
+            }
+
+            lblTotalAmount.Text = $"{account} 目前共花費{answer:C0}元";
+
+            if (dt.Rows.Count > 0) // 如果DB有資料
+            {
+
+                this.gvAccountingList.DataSource = dt; // 資料繫結
+                this.gvAccountingList.DataBind();
+            }
+            else
+            {
+
+            }
+        }
+        protected void btnAllReceive_Click(object sender, EventArgs e)
+        {
+            var CurrentUser = AuthManager.GetCurrentUser();
+            int actType = 1;
+            var dt = AccountingManager.ShowTotalAmount(CurrentUser.ID, actType);
+            string account = HttpContext.Current.Session["UserLoginInfo"] as string;
+
+            int answer = 0;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if ((int)dt.Rows[i][2] == 1)
+                    answer += (int)dt.Rows[i][3];
+            }
+           
+            if (dt.Rows.Count > 0) // 如果DB有資料
+            {
+                this.gvAccountingList.DataSource = dt; // 資料繫結
+                this.gvAccountingList.DataBind();
+            }
+            else
+            {
+
+            }
+
+            lblTotalAmount.Text = $"{account} 目前總收入為{answer:C0}元";
         }
     }
 }
